@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Author: Jon-Paul Sullivan
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="917.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="74.0" prefWidth="742.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="58.0" layoutX="138.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
+            <Text layoutX="314.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Log Editor">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane prefHeight="471.0" prefWidth="918.0">
+         <children>
+            <Text layoutX="27.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Select a project to edit its logs.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="23.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.b. Select the effort log to be modified into the current log" wrappingWidth="622.4495849609375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="512.0" layoutY="53.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="184.0" text="Clear Effort Logs">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ComboBox layoutX="23.0" layoutY="372.0" prefHeight="25.0" prefWidth="202.0" />
+            <ComboBox layoutX="27.0" layoutY="140.0" prefHeight="25.0" prefWidth="837.0" />
+            <ComboBox layoutX="27.0" layoutY="49.0" prefHeight="25.0" prefWidth="339.0" />
+            <ComboBox layoutX="284.0" layoutY="372.0" prefHeight="25.0" prefWidth="476.0" />
+            <Text layoutX="512.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.a. Clear current project logs.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="      Date: yyyy-mm-dd                       Times: hh:mm:ss                      Times: hh:mm:ss">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="23.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="237.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="291.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3.b. Press the corresponding buttons below for other optoins." wrappingWidth="543.2496337890625">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <TextField layoutX="76.0" layoutY="224.0" />
+            <TextField layoutX="344.0" layoutY="225.0" />
+            <TextField layoutX="622.0" layoutY="225.0" />
+            <Text layoutX="522.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stop Time:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="27.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Life Cycle Step:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <ComboBox layoutX="27.0" layoutY="291.0" prefHeight="25.0" prefWidth="339.0" />
+            <Text layoutX="27.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Category:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="284.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plan:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="24.0" layoutY="426.0" mnemonicParsing="false" text="Update Current Entry">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Text layoutX="24.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3.a. Modify the current effort log attributes, then hit the &quot;Update Current Entry&quot; button to save.">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane prefHeight="118.0" prefWidth="918.0">
+         <children>
+            <Button layoutX="24.0" layoutY="37.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="208.0" text="Delete Entry">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="268.0" layoutY="37.0" mnemonicParsing="false" text="Split Current Entry Into Two">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="568.0" layoutY="37.0" mnemonicParsing="false" text="Effort Logger Console">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="802.0" layoutY="37.0" mnemonicParsing="false" text="Back">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>

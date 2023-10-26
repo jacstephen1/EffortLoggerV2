@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Author: Jacob Wetherell
+ ASU ID: 1224869945
+ CSE 360 EffortLogger 2.0 Development
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PPMainController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: center;">
+         <children>
+            <Pane prefHeight="72.0" prefWidth="900.0">
+               <children>
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" text="Back">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="58.0" layoutX="138.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
+                  <Text layoutX="350.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definitions">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </HBox>
+      <Pane prefHeight="550.0" prefWidth="900.0">
+         <children>
+            <Label layoutX="192.0" layoutY="43.0" text="Projects">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="52.0" layoutY="79.0" prefHeight="100.0" prefWidth="350.0" />
+            <Label layoutX="248.0" layoutY="-1.0" text="Edit text areas to update/add/remove options">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="158.0" layoutY="192.0" text="Life Cycle Steps">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="52.0" layoutY="231.0" prefHeight="100.0" prefWidth="350.0" text="Problem Understanding&#10;Conceptual Design Plan&#10;Requirements&#10;Conceptual Design&#10;Conceptual Design Review&#10;Detailed Design Plan&#10;Detailed Design/Prototype&#10;Detailed Design Review&#10;Implementation Plan&#10;Test Case Generation&#10;Solution Specification&#10;Solution Review&#10;Solution Implementation&#10;Unit/System Test&#10;Reflection&#10;Repository Update&#10;Planning&#10;Information Gathering&#10;Information Understanding&#10;Verifying&#10;Outlining&#10;Drafting&#10;Finalizing&#10;Team Meeting&#10;Coach Meeting&#10;Stakeholder Meeting" />
+            <Label layoutX="152.0" layoutY="361.0" text="Effort Categories">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="52.0" layoutY="397.0" prefHeight="100.0" prefWidth="350.0" text="Plans&#10;Deliverables&#10;Interruptions&#10;Defects&#10;Others" />
+            <Label layoutX="640.0" layoutY="43.0" text="Plans">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="488.0" layoutY="73.0" prefHeight="70.0" prefWidth="350.0" text="Project Plan&#10;Risk Management Plan&#10;Conceptual Design Plan&#10;Detailed Design Plan&#10;Implementation Plan" />
+            <Label layoutX="610.0" layoutY="157.0" text="Deliverables">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="488.0" layoutY="187.0" prefHeight="70.0" prefWidth="350.0" text="Conceptual Design&#10;Detailed Design&#10;Test Cases&#10;Solution&#10;Reflection&#10;Outline&#10;Draft&#10;Report&#10;User Defined&#10;Other" />
+            <Label layoutX="609.0" layoutY="277.0" text="Interuptions">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="488.0" layoutY="306.0" prefHeight="70.0" prefWidth="350.0" text="Break&#10;Phone&#10;Teammate&#10;Visitor&#10;Other" />
+            <Label layoutX="585.0" layoutY="397.0" text="Defect Categories">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextArea layoutX="488.0" layoutY="427.0" prefHeight="70.0" prefWidth="350.0" text="Not specified&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;10 Documentation&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;20 Syntax&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;30 Build, Package&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;40 Assignment&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;50 Interface&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;60 Checking&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;70 Data&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;80 Function&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;90 System&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#10;100 Environment&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;" />
+            <Label layoutX="282.0" layoutY="22.0" text="Put separate options on separate lines">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</VBox>

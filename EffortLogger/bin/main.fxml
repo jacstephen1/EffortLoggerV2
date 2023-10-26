@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Author: Jacob Wetherell
+ ASU ID: 1224869945
+ CSE 360 EffortLogger 2.0 Development
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+  <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: center;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EffortLogger 2.0">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <HBox prefHeight="309.0" prefWidth="900.0" style="-fx-alignment: center;">
+         <children>
+            <VBox prefHeight="309.0" prefWidth="300.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToEL" prefHeight="250.0" prefWidth="325.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="218.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../PlaceholderLC.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EffortLogger" textAlignment="CENTER" wrappingWidth="299.73193359375">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <padding>
+                  <Insets right="25.0" />
+               </padding>
+            </VBox>
+            <VBox prefHeight="309.0" prefWidth="300.0">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToPP" prefHeight="250.0" prefWidth="325.0">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="218.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../PlaceholderLC.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Planning Poker" textAlignment="CENTER" wrappingWidth="299.73193359375">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Text>
+               </children>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+  </children>
+</VBox>

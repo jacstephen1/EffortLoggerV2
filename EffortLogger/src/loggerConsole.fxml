@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Author: Jon-Paul Sullivan
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="74.0" prefWidth="742.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="58.0" layoutX="138.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
+            <Text layoutX="267.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Logger Console">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <Button layoutX="20.0" layoutY="17.0" mnemonicParsing="false" onAction="#switchToMain" text="Back">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="450.0" prefWidth="918.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00d700" height="36.0" layoutX="138.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
+            <Label layoutX="383.0" layoutY="17.0" text="Clock is running" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Text layoutX="43.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. When starting a new activity, press the &quot;Start Activity button.&quot;">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="41.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Select the project, life cycle step, effort category, and deliverable." wrappingWidth="622.4495849609375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="43.0" layoutY="97.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" text="Start Activity">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ComboBox layoutX="41.0" layoutY="312.0" prefHeight="25.0" prefWidth="202.0" />
+            <ComboBox layoutX="423.0" layoutY="229.0" prefHeight="25.0" prefWidth="339.0" />
+            <ComboBox layoutX="41.0" layoutY="229.0" prefHeight="25.0" prefWidth="339.0" />
+            <ComboBox layoutX="291.0" layoutY="312.0" prefHeight="25.0" prefWidth="476.0" />
+            <Text layoutX="41.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="423.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Life cycle step:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="39.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort category:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="291.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deliverable:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="41.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Press the &quot;Stop Activity&quot; button to generate the effort log entry with the above attributes." wrappingWidth="822.4495849609375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="43.0" layoutY="404.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" text="Stop Activity">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane prefHeight="118.0" prefWidth="918.0">
+         <children>
+            <Button layoutX="14.0" layoutY="37.0" mnemonicParsing="false" text="Log Editor">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="162.0" layoutY="37.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="208.0" text="Defect Log Console">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="407.0" layoutY="37.0" mnemonicParsing="false" text="Definitions">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="555.0" layoutY="37.0" mnemonicParsing="false" text="Effort and Defect Logs">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="802.0" layoutY="37.0" mnemonicParsing="false" text="Back">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>
