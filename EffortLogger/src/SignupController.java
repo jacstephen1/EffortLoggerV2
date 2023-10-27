@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class SignupController {
 
 	private Stage stage;
 	private Scene scene;
@@ -24,27 +24,18 @@ public class LoginController {
 	
 	@FXML private TextField user;
 	@FXML private TextField password;
-	@FXML private Button loginButton;
+	@FXML private TextField companyCode;
 	@FXML private Button signUpButton;
 	
-	public void Login(ActionEvent event) throws IOException
+	public void Signup(ActionEvent event) throws IOException
 	{
-		if ((user.getText().equals("user")) && (password.getText().equals("pass")))
+		if (companyCode.getText().equals("000"))
 		{
-			root = FXMLLoader.load(getClass().getResource("main.fxml"));
+			root = FXMLLoader.load(getClass().getResource("login.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
-	}
-	
-	public void Signup(ActionEvent event) throws IOException
-	{
-		root = FXMLLoader.load(getClass().getResource("signup.fxml"));
-		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
 	}
 }

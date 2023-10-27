@@ -13,7 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainController {
+public class ELController {
 
 	private Stage stage;
 	private Scene scene;
@@ -28,18 +28,18 @@ public class MainController {
 		stage.show();
 	}
 	
-	public void switchToPP(ActionEvent event) throws IOException
+	public void switchToDefect(ActionEvent event) throws IOException
 	{
-		root = FXMLLoader.load(getClass().getResource("planningPoker.fxml"));
+		root = FXMLLoader.load(getClass().getResource("defectConsole.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
 	
-	public void switchToMain(ActionEvent event) throws IOException
+	public void switchToEditor(ActionEvent event) throws IOException
 	{
-		root = FXMLLoader.load(getClass().getResource("main.fxml"));
+		root = FXMLLoader.load(getClass().getResource("logEditor.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

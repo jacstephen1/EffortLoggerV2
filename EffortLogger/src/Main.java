@@ -20,6 +20,7 @@ public class Main extends Application{
 			Scene login = new Scene(root);
 			stage.setScene(login);
 			stage.show();
+			stage.setTitle("EffortLogger V2");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
