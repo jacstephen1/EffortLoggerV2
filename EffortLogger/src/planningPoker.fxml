@@ -73,13 +73,13 @@
                </font>
             </Label>
             <ListView fx:id="projectList" layoutX="53.0" layoutY="39.0" onMouseClicked="#projectListViewUpdate" prefHeight="460.0" prefWidth="350.0" />
-            <TextArea fx:id="projectInfo" editable="false" layoutX="512.0" layoutY="39.0" prefHeight="200.0" prefWidth="350.0" text="PROJECT INFO [MAKE EDITABLE WHEN EDIT BUTTON SELECTED]" wrapText="true" />
-            <Label layoutX="635.0" layoutY="247.0" text="User Stories">
+            <TextArea fx:id="projectInfo" editable="false" layoutX="512.0" layoutY="39.0" prefHeight="94.0" prefWidth="350.0" text="PROJECT INFO [MAKE EDITABLE WHEN EDIT BUTTON SELECTED]" wrapText="true" />
+            <Label layoutX="635.0" layoutY="148.0" text="User Stories">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="projectList1" layoutX="512.0" layoutY="278.0" prefHeight="221.0" prefWidth="350.0" />
+            <ListView fx:id="projectList1" layoutX="512.0" layoutY="179.0" prefHeight="320.0" prefWidth="350.0" />
          </children>
       </Pane>
    </children>

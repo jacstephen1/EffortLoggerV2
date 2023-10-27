@@ -26,6 +26,8 @@ public class EditPPController implements Initializable{
 	private Parent root;
 	
 	@FXML private Button editUSButton;
+	@FXML private Button editHUSButton;
+	@FXML private ListView<String> listHUS;
 	@FXML private ListView<String> listUS;
 	private String[] test = {"Test", "Test2", "Test3", "Test4"};
 	
@@ -33,6 +35,7 @@ public class EditPPController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		listUS.getItems().addAll(test);
+		listHUS.getItems().addAll(test);
 	}
 	
 	public void switchToPPMain(ActionEvent event) throws IOException
@@ -46,7 +49,9 @@ public class EditPPController implements Initializable{
 	
 	public void switchToUS(ActionEvent event) throws IOException
 	{
-		if ((event.getSource().equals(editUSButton) && listUS.getSelectionModel().getSelectedItem() != null) || !event.getSource().equals(editUSButton))
+		if ((event.getSource().equals(editUSButton) && listUS.getSelectionModel().getSelectedItem() != null) 
+				|| (event.getSource().equals(editHUSButton) && listHUS.getSelectionModel().getSelectedItem() != null)
+				|| (!event.getSource().equals(editUSButton)))
 		{
 			root = FXMLLoader.load(getClass().getResource("editUserStory.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
