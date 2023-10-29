@@ -1,3 +1,8 @@
+/*
+ * Author: Jacob Wetherell
+ * ASU ID: 1224869945
+ * CSE 360 EffortLogger 2.0 Development
+ */
 
 public class User {
 	private int id = -1;
@@ -5,6 +10,7 @@ public class User {
 	private String password = null;
 	private String role = null;
 	
+	//Create User Info
 	public void setInfo(int userId, String name, String pass, String compRole)
 	{
 		id = userId;
@@ -13,6 +19,7 @@ public class User {
 		role = compRole;
 	}
 	
+	//Access Necessary User Info
 	public int getId()
 	{
 		return id;

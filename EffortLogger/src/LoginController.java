@@ -26,11 +26,13 @@ public class LoginController{
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
 	
+	//Attempt to login user with entered data
 	public void Login(ActionEvent event) throws IOException
 	{
 		DBUtils.loginUser(event, user.getText(), password.getText());
 	}
 	
+	//Switch to signup page
 	public void Signup(ActionEvent event) throws IOException
 	{
 		root = FXMLLoader.load(getClass().getResource("signup.fxml"));

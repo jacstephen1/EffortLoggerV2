@@ -30,14 +30,17 @@ public class SignupController{
 	@FXML private TextField companyRole;
 	@FXML private Button signUpButton;
 	
+	//Signup user when signup is clicked
 	public void Signup(ActionEvent event) throws IOException
 	{
+		//Check that data was entered
 		if (!user.getText().trim().isEmpty() 
 				|| !password.getText().trim().isEmpty()
 				|| !confirmPassword.getText().trim().isEmpty()
 				|| !companyCode.getText().trim().isEmpty()
 				|| !companyRole.getText().trim().isEmpty())
 		{
+			//Check company code and check passwords and the same
 			if (companyCode.getText().equals("000") && password.getText().trim().equals(confirmPassword.getText().trim()))
 			{
 				DBUtils.signUpUser(event, user.getText(), password.getText(), companyRole.getText());
@@ -59,6 +62,7 @@ public class SignupController{
 		}
 	}
 	
+	//Switch back to login page
 	public void switchToLogin(ActionEvent event) throws IOException
 	{
 		root = FXMLLoader.load(getClass().getResource("login.fxml"));

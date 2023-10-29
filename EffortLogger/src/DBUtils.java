@@ -21,12 +21,14 @@ import javafx.stage.Stage;
 
 public class DBUtils {
 	
+	//Handles scene changes for login and signup to incorporate username and events
 	public static void changeScene(ActionEvent event, String fxmlFile, String username)
 	{
 		Parent root = null;
 		if (username != null)
 		{
 			try {
+				//Load new fxml
 				FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile)); 
 				root = loader.load();
 				MainController loggedIn = loader.getController();
@@ -49,24 +51,28 @@ public class DBUtils {
 		stage.show();
 	}
 	
+	//CREATE NEW USER
 	public static void signUpUser(ActionEvent event, String username, String password, String user_role)
 	{
+		//SQL Database Prep
 		Connection connection = null;
 		PreparedStatement psInsert = null;
 		PreparedStatement psCheckID = null;
 		PreparedStatement psCheckUserExists = null;
 		ResultSet resultSet = null;
 		
+		//Encrypt data for storage
 		username = AES.encrypt(username);
 		password = AES.encrypt(password);
 		
 		try {
+			//Attempt to connect to SQL database
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", "ELDatabasePassword1!");
 			psCheckUserExists = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
 			psCheckUserExists.setString(1, username);
 			resultSet = psCheckUserExists.executeQuery();
 			
-			if (resultSet.isBeforeFirst()) //Check username taken?
+			if (resultSet.isBeforeFirst()) //Check username taken
 			{
 				System.out.println("User already exists");
 				Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -75,12 +81,14 @@ public class DBUtils {
 			}
 			else
 			{
+				//If username not taken make new user
 				psInsert = connection.prepareStatement("INSERT INTO users (username, password, user_role) VALUES (?, ?, ?)");
 				psInsert.setString(1, username);
 				psInsert.setString(2, password);
 				psInsert.setString(3, user_role);
 				psInsert.executeUpdate();
 				
+				//Find user in SQL query for retrieving user data
 				psCheckID = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
 				psCheckID.setString(1, username);
 				ResultSet resultID = psCheckID.executeQuery();
@@ -95,6 +103,7 @@ public class DBUtils {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			//Close SQL connection
 			if (resultSet != null)
 			{
 				try {
@@ -133,23 +142,27 @@ public class DBUtils {
 		}
 	}
 	
+	//Login existing user
 	public static void loginUser(ActionEvent event, String username, String password)
 	{
+		//SQL Database prep
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		PreparedStatement psCheckID = null;
 		ResultSet resultSet = null;
 		
+		//Encrypt data to check already encrypted data
 		username = AES.encrypt(username);
 		password = AES.encrypt(password);
 				
 		try {
+			//Connect to SQL Database
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", "ELDatabasePassword1!");
 			preparedStatement = connection.prepareStatement("SELECT password FROM users WHERE username = ?");
 			preparedStatement.setString(1,  username);
 			resultSet = preparedStatement.executeQuery();
 			
-			if (!resultSet.isBeforeFirst())
+			if (!resultSet.isBeforeFirst()) //Check if user is not in the database
 			{
 				System.out.println("User does not exist");
 				Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -161,8 +174,9 @@ public class DBUtils {
 				while (resultSet.next())
 				{
 					String retrievedPassword = resultSet.getString("password");
-					if (retrievedPassword.equals(password))
+					if (retrievedPassword.equals(password)) //CHECK IS PASSWORD IS CORRECT
 					{
+						//Find user in SQL query for retrieving user data
 						psCheckID = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
 						psCheckID.setString(1, username);
 						ResultSet resultID = psCheckID.executeQuery();
@@ -184,6 +198,7 @@ public class DBUtils {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			//Close SQL Connection
 			if (resultSet != null)
 			{
 				try {

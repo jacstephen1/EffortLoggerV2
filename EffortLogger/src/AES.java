@@ -1,3 +1,10 @@
+/*
+ * Author: Jacob Wetherell
+ * ASU ID: 1224869945
+ * CSE 360 EffortLogger 2.0 Development
+ */
+
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,7 +17,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES {
 	private static SecretKeySpec secretKey;
 	private static byte[] key;
-	private static String dkey = "fhsdfjiowqn m,sodijw28";
+	private static String dkey = "fhsdfjiowqn m,sodijw28"; //Random default encryption key
 	
 	//Set dKey
 	public void setdkey(String set)
@@ -60,7 +67,6 @@ public class AES {
 		}
 		return null;
 	}
-	
 	//Encrypt Overload
 	public static String encrypt(String stringToEncrypt, String sec)
 	{
@@ -88,7 +94,6 @@ public class AES {
 		}
 		return null;
 	}
-	
 	//Decrypt Overload
 	public static String decrypt(String stringToDecrypt, String sec)
 	{
