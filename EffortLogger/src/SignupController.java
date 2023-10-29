@@ -12,11 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SignupController {
+public class SignupController{
 
 	private Stage stage;
 	private Scene scene;
@@ -24,18 +25,46 @@ public class SignupController {
 	
 	@FXML private TextField user;
 	@FXML private TextField password;
+	@FXML private TextField confirmPassword;
 	@FXML private TextField companyCode;
+	@FXML private TextField companyRole;
 	@FXML private Button signUpButton;
 	
 	public void Signup(ActionEvent event) throws IOException
 	{
-		if (companyCode.getText().equals("000"))
+		if (!user.getText().trim().isEmpty() 
+				|| !password.getText().trim().isEmpty()
+				|| !confirmPassword.getText().trim().isEmpty()
+				|| !companyCode.getText().trim().isEmpty()
+				|| !companyRole.getText().trim().isEmpty())
 		{
-			root = FXMLLoader.load(getClass().getResource("login.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+			if (companyCode.getText().equals("000") && password.getText().trim().equals(confirmPassword.getText().trim()))
+			{
+				DBUtils.signUpUser(event, user.getText(), password.getText(), companyRole.getText());
+			}
+			else
+			{
+				System.out.println("company code is invalid or passwords don't match");
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("Provided credentials are invalid");
+				alert.show();
+			}
 		}
+		else
+		{
+			System.out.println("Fields not filled");
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Please fill in all info to signup");
+			alert.show();
+		}
+	}
+	
+	public void switchToLogin(ActionEvent event) throws IOException
+	{
+		root = FXMLLoader.load(getClass().getResource("login.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 }
