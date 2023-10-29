@@ -7,15 +7,56 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="600.0" prefWidth="900.0" style="-fx-alignment: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
-      <Button mnemonicParsing="false" onAction="#switchToMain" text="Back">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-alignment: center;">
+         <children>
+            <Pane prefHeight="72.0" prefWidth="900.0">
+               <children>
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" text="Back">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="58.0" layoutX="138.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
+                  <Text layoutX="292.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Logger Hub">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+      <Pane prefHeight="500.0" prefWidth="900.0">
+         <children>
+            <Button layoutX="80.0" layoutY="115.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" />
+            <Button layoutX="620.0" layoutY="115.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" />
+            <Button layoutX="350.0" layoutY="115.0" mnemonicParsing="false" prefHeight="200.0" prefWidth="200.0" />
+            <Label layoutX="84.0" layoutY="337.0" text="Effort Logger Console">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="401.0" layoutY="337.0" text="Log Viewer">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="673.0" layoutY="337.0" text="Definitions">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </VBox>

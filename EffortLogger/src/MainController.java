@@ -31,7 +31,8 @@ public class MainController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		// HANDLE USER FILE ACCESS AND LOADING		
+		// HANDLE USER FILE ACCESS AND LOADING
+		welcomeLabel.setText("Welcome " + Main.user.getUsername() + "!");
 	}
 	
 	public void setUser(String username)
