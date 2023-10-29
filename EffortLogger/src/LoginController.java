@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,7 +30,17 @@ public class LoginController{
 	//Attempt to login user with entered data
 	public void Login(ActionEvent event) throws IOException
 	{
-		DBUtils.loginUser(event, user.getText(), password.getText());
+		if (user.getText().trim().length() >= 32 || (password.getText().trim().length() >= 32))
+		{
+			System.out.println("Input too long");
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("The max input length is 32 characters");
+			alert.show();
+		}
+		else
+		{
+			DBUtils.loginUser(event, user.getText().trim(), password.getText().trim());
+		}
 	}
 	
 	//Switch to signup page

@@ -40,17 +40,32 @@ public class SignupController{
 				|| !companyCode.getText().trim().isEmpty()
 				|| !companyRole.getText().trim().isEmpty())
 		{
-			//Check company code and check passwords and the same
-			if (companyCode.getText().equals("000") && password.getText().trim().equals(confirmPassword.getText().trim()))
+			//Check input length
+			if (user.getText().trim().length() >= 32 
+					|| (password.getText().trim().length() >= 32) 
+					|| (confirmPassword.getText().trim().length() >= 32)
+					|| (companyCode.getText().trim().length() >= 32)
+					|| (companyRole.getText().trim().length() >= 32))
 			{
-				DBUtils.signUpUser(event, user.getText(), password.getText(), companyRole.getText());
+				System.out.println("Input too long");
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("The max input length is 32 characters");
+				alert.show();
 			}
 			else
 			{
-				System.out.println("company code is invalid or passwords don't match");
-				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setContentText("Provided credentials are invalid");
-				alert.show();
+				//Check company code and check passwords and the same
+				if (companyCode.getText().equals("000") && password.getText().trim().equals(confirmPassword.getText().trim()))
+				{
+					DBUtils.signUpUser(event, user.getText().trim(), password.getText().trim(), companyRole.getText().trim());
+				}
+				else
+				{
+					System.out.println("company code is invalid or passwords don't match");
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setContentText("Provided credentials are invalid");
+					alert.show();
+				}
 			}
 		}
 		else

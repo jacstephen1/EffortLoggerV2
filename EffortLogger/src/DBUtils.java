@@ -95,9 +95,7 @@ public class DBUtils {
 				resultID.next();
 				
 				Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
-				
-				System.out.println(Main.user.getId() + " " + Main.user.getRole() + " " + Main.user.getUsername());
-				
+								
 				changeScene(event, "main.fxml", AES.decrypt(username));
 			} 
 		} catch (SQLException e) {
