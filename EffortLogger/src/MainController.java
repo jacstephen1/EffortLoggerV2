@@ -41,6 +41,8 @@ public class MainController implements Initializable{
 	
 	public void logout(ActionEvent event) throws IOException
 	{
+		Main.user.setInfo(-1, null, null, null);
+		
 		root = FXMLLoader.load(getClass().getResource("login.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);

@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	
+	public static User user = new User();
+	
 	public void start(Stage stage)
 	{
 		try 

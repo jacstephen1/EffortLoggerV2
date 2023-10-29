@@ -53,6 +53,7 @@ public class DBUtils {
 	{
 		Connection connection = null;
 		PreparedStatement psInsert = null;
+		PreparedStatement psCheckID = null;
 		PreparedStatement psCheckUserExists = null;
 		ResultSet resultSet = null;
 		
@@ -80,7 +81,16 @@ public class DBUtils {
 				psInsert.setString(3, user_role);
 				psInsert.executeUpdate();
 				
-				changeScene(event, "main.fxml", username);
+				psCheckID = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+				psCheckID.setString(1, username);
+				ResultSet resultID = psCheckID.executeQuery();
+				resultID.next();
+				
+				Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
+				
+				System.out.println(Main.user.getId() + " " + Main.user.getRole() + " " + Main.user.getUsername());
+				
+				changeScene(event, "main.fxml", AES.decrypt(username));
 			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,6 +137,7 @@ public class DBUtils {
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		PreparedStatement psCheckID = null;
 		ResultSet resultSet = null;
 		
 		username = AES.encrypt(username);
@@ -152,6 +163,13 @@ public class DBUtils {
 					String retrievedPassword = resultSet.getString("password");
 					if (retrievedPassword.equals(password))
 					{
+						psCheckID = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+						psCheckID.setString(1, username);
+						ResultSet resultID = psCheckID.executeQuery();
+						resultID.next();
+						
+						Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
+						
 						changeScene(event, "main.fxml", AES.decrypt(username));
 					}
 					else
