@@ -9,11 +9,12 @@ Users will need to setup a mysql database for local storage
 Port: 3306
 Name: effortlogger_db
 Username: root
-Password: ELDatabasePassword1
+Password: ELDatabasePassword1!
 
 SQL Database Instructions 
-MySQL Database Setup Video -- https://www.youtube.com/watch?v=OM4aZJW_Ojs&t=321s&ab_channel=AmitThinks
-1. Watch the above video to setup SQL
+MySQL Database Setup Video -- https://youtu.be/OM4aZJW_Ojs (Credit to Amit Thinks)
+1a. Watch the above video to setup SQL
+1b. MAKE SURE YOUR DATABASE PASSWORD IS SET TO ELDatabasePassword1!
 2. Access your local instance
 3. Click on the schemas tab and create a new schema called effortlogger_db
 4. Double click on effortlogger_db to select the database, the text should become bold
