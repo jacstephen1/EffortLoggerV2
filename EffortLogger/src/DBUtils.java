@@ -72,7 +72,6 @@ public class DBUtils {
 			ResultSet resultSet = null;
 			
 			//Encrypt data for storage
-			username = AES.encrypt(username);
 			password = AES.encrypt(password);
 			
 			try {
@@ -106,7 +105,7 @@ public class DBUtils {
 					
 					Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
 									
-					changeScene(event, "main.fxml", AES.decrypt(username));
+					changeScene(event, "main.fxml", username);
 				} 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -171,7 +170,6 @@ public class DBUtils {
 			ResultSet resultSet = null;
 			
 			//Encrypt data to check already encrypted data
-			username = AES.encrypt(username);
 			password = AES.encrypt(password);
 					
 			try {
@@ -203,7 +201,7 @@ public class DBUtils {
 							
 							Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
 							
-							changeScene(event, "main.fxml", AES.decrypt(username));
+							changeScene(event, "main.fxml", username);
 						}
 						else
 						{

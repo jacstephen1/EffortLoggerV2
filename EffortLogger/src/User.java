@@ -27,7 +27,7 @@ public class User {
 	
 	public String getUsername()
 	{
-		return AES.decrypt(username);
+		return username;
 	}
 	
 	public String getRole()

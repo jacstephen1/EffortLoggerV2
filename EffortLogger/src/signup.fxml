@@ -8,6 +8,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -82,11 +83,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="companyRole" promptText="Enter employee role" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </TextField>
+                              <ChoiceBox fx:id="companyRole" prefHeight="40.0" prefWidth="347.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                     </children>
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="135.0" />

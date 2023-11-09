@@ -5,19 +5,23 @@
  */
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SignupController{
+public class SignupController implements Initializable{
 
 	private Stage stage;
 	private Scene scene;
@@ -27,7 +31,7 @@ public class SignupController{
 	@FXML private TextField password;
 	@FXML private TextField confirmPassword;
 	@FXML private TextField companyCode;
-	@FXML private TextField companyRole;
+	@FXML private ChoiceBox<String> companyRole;
 	@FXML private Button signUpButton;
 	
 	//Signup user when signup is clicked
@@ -37,15 +41,13 @@ public class SignupController{
 		if (!user.getText().trim().isEmpty() 
 				|| !password.getText().trim().isEmpty()
 				|| !confirmPassword.getText().trim().isEmpty()
-				|| !companyCode.getText().trim().isEmpty()
-				|| !companyRole.getText().trim().isEmpty())
+				|| !companyCode.getText().trim().isEmpty())
 		{
 			//Check input length
 			if (user.getText().trim().length() >= 32 
 					|| (password.getText().trim().length() >= 32) 
 					|| (confirmPassword.getText().trim().length() >= 32)
-					|| (companyCode.getText().trim().length() >= 32)
-					|| (companyRole.getText().trim().length() >= 32))
+					|| (companyCode.getText().trim().length() >= 32))
 			{
 				System.out.println("Input too long");
 				Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -57,7 +59,7 @@ public class SignupController{
 				//Check company code and check passwords and the same
 				if (companyCode.getText().equals("000") && password.getText().trim().equals(confirmPassword.getText().trim()))
 				{
-					DBUtils.signUpUser(event, user.getText().trim(), password.getText().trim(), companyRole.getText().trim());
+					DBUtils.signUpUser(event, user.getText().trim(), password.getText().trim(), companyRole.getSelectionModel().getSelectedItem());
 				}
 				else
 				{
@@ -85,5 +87,10 @@ public class SignupController{
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		companyRole.getItems().addAll("Manager", "Database Admin", "Data Analyst", "Web Developer", "Senior Programmer", "Programmer", "System Analyst", "System Architect");
 	}
 }

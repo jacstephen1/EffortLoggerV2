@@ -41,7 +41,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="275.0" layoutY="31.0" prefWidth="350.0" />
+            <ChoiceBox fx:id="projects" layoutX="275.0" layoutY="31.0" prefWidth="350.0" />
             <Label layoutX="635.0" layoutY="74.0" text="Defect Logs">
                <font>
                   <Font size="20.0" />
@@ -52,8 +52,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="52.0" layoutY="110.0" prefWidth="350.0" />
-            <ChoiceBox layoutX="512.0" layoutY="110.0" prefWidth="350.0" />
+            <ChoiceBox fx:id="effort" layoutX="52.0" layoutY="110.0" prefWidth="350.0" />
+            <ChoiceBox fx:id="defect" layoutX="512.0" layoutY="110.0" prefWidth="350.0" />
             <Label layoutX="52.0" layoutY="151.0" text="Date:">
                <font>
                   <Font size="20.0" />
