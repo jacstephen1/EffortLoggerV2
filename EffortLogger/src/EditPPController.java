@@ -6,6 +6,7 @@
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -28,14 +29,15 @@ public class EditPPController implements Initializable{
 	@FXML private Button editUSButton;
 	@FXML private Button editHUSButton;
 	@FXML private ListView<String> listHUS;
-	@FXML private ListView<String> listUS;
-	private String[] test = {"Test", "Test2", "Test3", "Test4"};
-	
+	@FXML private ListView<UserStory> listUS;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		listUS.getItems().addAll(test);
-//		listHUS.getItems().addAll(test);
+
+		List<UserStory> stories = DBUtils.GetUserStoriesFromDB();
+		listUS.getItems().addAll(stories);
+
+
 	}
 	
 	public void switchToPPMain(ActionEvent event) throws IOException
