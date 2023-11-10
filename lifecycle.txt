@@ -1,0 +1,26 @@
+Problem Understanding
+Conceptual Design Plan
+Requirements
+Conceptual Design
+Conceptual Design Review
+Detailed Design Plan
+Detailed Design/Prototype
+Detailed Design Review
+Implementation Plan
+Test Case Generation
+Solution Specification
+Solution Review
+Solution Implementation
+Unit/System Test
+Reflection
+Repository Update
+Planning
+Information Gathering
+Information Understanding
+Verifying
+Outlining
+Drafting
+Finalizing
+Team Meeting
+Coach Meeting
+Stakeholder Meeting

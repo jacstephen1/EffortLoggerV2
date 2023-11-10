@@ -1,0 +1,5 @@
+Break
+Phone
+Teammate
+Visitor
+Other
