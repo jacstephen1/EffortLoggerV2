@@ -1,16 +1,13 @@
-/*
- * Author: Jacob Wetherell
- * ASU ID: 1224869945
- * CSE 360 EffortLogger 2.0 Development
- */
-
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditUSController {
@@ -18,6 +15,13 @@ public class EditUSController {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+
+	@FXML
+	private TextField a;
+	@FXML
+	private TextArea b;
+	@FXML
+	private TextField c;
 	
 	public void switchToEditPP(ActionEvent event) throws IOException
 	{
@@ -27,4 +31,13 @@ public class EditUSController {
 		stage.setScene(scene);
 		stage.show();
 	}
+
+    public void Save(ActionEvent actionEvent) {
+		String name = a.getText();
+		String weight = c.getText();
+		String description = b.getText();
+		String similar = null;
+
+		boolean created = DBUtils.createUserStory(name,weight,description,null);
+    }
 }

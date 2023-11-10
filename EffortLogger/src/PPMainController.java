@@ -4,10 +4,15 @@
  * CSE 360 EffortLogger 2.0 Development
  */
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,5 +78,108 @@ public class PPMainController implements Initializable{
 				projectInfo.setText(testInfo[selectedIndex]);
 			}
 		}
+	}
+
+	private final FileLock lock = new FileLock();
+
+	public void Save(ActionEvent event)
+	{
+		Task task = new Task<Void>() {
+			@Override public Void call() {
+
+				System.out.println("Save clicked");
+
+				// Claim lock on file
+				lock.WaitToClaim(200);
+
+				// Write to the file
+				WriteToFile("planningpoker.txt");
+
+				// Release lock on file
+				lock.Unlock();
+
+				return null;
+			}
+		};
+
+		new Thread(task).start();
+	}
+
+	private void WriteToFile(String path)
+	{
+		System.out.println("Saving to file... ");
+
+		// Arbitrary cooldown
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+		BufferedWriter writer = null;
+		try {
+			String content = "Content";
+
+			File file = new File(path);
+
+			// Init file
+			if (file.exists())
+			{
+				file.delete();
+			}
+
+			file.createNewFile();
+
+			FileWriter fileWriter = new FileWriter(file);
+			writer = new BufferedWriter(fileWriter);
+			writer.write(content);
+			writer.close();
+			fileWriter.close();
+
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+
+		System.out.println("Done " + (new Date().toString()));
+	}
+}
+
+class FileLock
+{
+
+	// Main boolean to indicate file is being used
+	private boolean locked = false;
+
+	// Unlocks the file, file is no longer being used and is open to being locked
+	public void Unlock()
+	{
+		locked = false;
+	}
+
+	// Attempt to claim the lock, if unlocked, succeed and return
+	// Otherwise, sleep until the lock is available
+	public void WaitToClaim(int cooldown)
+	{
+		if (!locked)
+		{
+			locked = true;
+			return;
+		}
+
+		while (true)
+		{
+			try {
+				Thread.sleep(cooldown);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+
+			if (!locked)
+			{
+				locked = true;
+				return;
+			}
+		}
+
 	}
 }

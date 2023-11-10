@@ -32,7 +32,7 @@
                   <Font size="40.0" />
                </font>
             </Text>
-            <Button layoutX="819.0" layoutY="15.0" mnemonicParsing="false" text="Save">
+            <Button layoutX="819.0" layoutY="15.0" mnemonicParsing="false" text="Save" onAction="#Save">
                <font>
                   <Font size="20.0" />
                </font>
@@ -51,20 +51,20 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="36.0" layoutY="44.0" prefHeight="25.0" prefWidth="350.0" />
+            <TextField fx:id="a" layoutX="36.0" layoutY="44.0" prefHeight="25.0" prefWidth="350.0" />
             <Label layoutX="112.0" layoutY="127.0" text="User Story Description">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextArea layoutX="36.0" layoutY="159.0" prefHeight="339.0" prefWidth="350.0" />
+            <TextArea fx:id="b" layoutX="36.0" layoutY="159.0" prefHeight="339.0" prefWidth="350.0" />
             <ListView layoutX="486.0" layoutY="40.0" prefHeight="460.0" prefWidth="350.0" />
             <Label layoutX="36.0" layoutY="82.0" text="User Story Weight: ">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="206.0" layoutY="84.0" prefHeight="25.0" prefWidth="179.0" />
+            <TextField fx:id="c" layoutX="206.0" layoutY="84.0" prefHeight="25.0" prefWidth="179.0" />
          </children>
       </Pane>
    </children>

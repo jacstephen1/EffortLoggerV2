@@ -51,7 +51,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Save">
+                  <Button mnemonicParsing="false" text="Save" onAction="#Save">
                      <font>
                         <Font size="20.0" />
                      </font>

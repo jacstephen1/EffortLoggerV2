@@ -35,7 +35,7 @@ public class EditPPController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		listUS.getItems().addAll(test);
-		listHUS.getItems().addAll(test);
+//		listHUS.getItems().addAll(test);
 	}
 	
 	public void switchToPPMain(ActionEvent event) throws IOException
@@ -59,5 +59,10 @@ public class EditPPController implements Initializable{
 			stage.setScene(scene);
 			stage.show();
 		}
+	}
+
+	public void testSemaphores(ActionEvent event)
+	{
+		System.out.println("Test");
 	}
 }
