@@ -14,6 +14,7 @@ public class Main extends Application{
 	
 	public static User user = new User();
 	
+	@Override
 	public void start(Stage stage)
 	{
 		try 
@@ -26,6 +27,13 @@ public class Main extends Application{
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+    public void stop() 
+	{
+		//Log out user at program close
+		user.setInfo(-1, null, null, null);
 	}
 	
 	public static void main(String[] args)
