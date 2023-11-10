@@ -19,8 +19,8 @@ MySQL Database Setup Video -- https://youtu.be/OM4aZJW_Ojs (Credit to Amit Think
 3. Click on the schemas tab and create a new schema called effortlogger_db
 4. Double click on effortlogger_db to select the database, the text should become bold
 5. Click the drop down menu under effortlogger_db and right click on tables and click import "Table Data Import Wizard"
-6. Select the effortlogger_db_users.csv file and name the new table "users"
-7. Click the menu to finish importing the table
+6. Import all the files in the default folder inside lib except the effortlogger_db_users.csv file
+7. Then import the effortlogger_db_users.csv and do the following
 8. Right click on the users table and click "alter tables..."
 9. Next to user_id checkmark the following boxes: PK, NN, AI
 10. Click apply in the bottom right
