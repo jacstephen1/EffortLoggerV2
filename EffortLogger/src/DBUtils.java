@@ -104,6 +104,7 @@ public class DBUtils {
 					resultID.next();
 					
 					Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
+					Main.user.createTables();
 									
 					changeScene(event, "main.fxml", username);
 				} 

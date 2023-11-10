@@ -18,7 +18,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class LogViewerController implements Initializable{
