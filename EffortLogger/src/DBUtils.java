@@ -231,9 +231,8 @@ public class DBUtils {
 		}
 	}
 
-	public static boolean createUserStory(String name, String weight, String description, String similar)
+	public static boolean createUserStory(String name, String weight, String description, String similar, String sid)
 	{
-		long id = System.currentTimeMillis();
 
 		if (name == null || name == "" || weight == null || weight == "" || description == null || description == "")
 		{
@@ -244,22 +243,50 @@ public class DBUtils {
 		Connection connection = null;
 		PreparedStatement psInsert = null;
 
-		try {
-			//Connect to SQL Database
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
-			psInsert = connection.prepareStatement("INSERT INTO user_stories (id, name, weight, description, similar_stories) VALUES (?, ?, ?, ?, ?)");
-			psInsert.setString(1, String.valueOf(id));
-			psInsert.setString(2, name);
-			psInsert.setString(3, weight);
-			psInsert.setString(4, description);
-			psInsert.setString(5, similar);
-			int result = psInsert.executeUpdate();
-		} catch (SQLException e) {
-            e.printStackTrace();
-			return false;
-        }
+		// If given id is null, create
+		if (sid == null)
+		{
+			long id = System.currentTimeMillis();
 
-        return true;
+			try {
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+				psInsert = connection.prepareStatement("INSERT INTO user_stories (id, name, weight, description, similar_stories) VALUES (?, ?, ?, ?, ?)");
+				psInsert.setString(1, String.valueOf(id));
+				psInsert.setString(2, name);
+				psInsert.setString(3, weight);
+				psInsert.setString(4, description);
+				psInsert.setString(5, similar);
+				int result = psInsert.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+			return true;
+		}
+
+		// Otherwise, update
+		else
+		{
+			try {
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+				// UPDATE user_stories SET name = ?, weight = ?, description = ?, similar_stories = ? WHERE id = ?
+				psInsert = connection.prepareStatement("UPDATE user_stories SET name = ?, weight = ?, description = ?, similar_stories = ? WHERE id = ?");
+				psInsert.setString(1, name);
+				psInsert.setString(2, weight);
+				psInsert.setString(3, description);
+				psInsert.setString(4, similar);
+				psInsert.setString(5, sid);
+				int result = psInsert.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+			return true;
+		}
 	}
 
 	public static ArrayList<UserStory> GetUserStoriesFromDB()
@@ -294,6 +321,35 @@ public class DBUtils {
 		}
 
 		return list;
+	}
+
+	public static UserStory GetUserStoryById(String id)
+	{
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet results = null;
+
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+			ps = connection.prepareStatement("SELECT * FROM user_stories WHERE ID = ?");
+			ps.setString(1,  id);
+			results = ps.executeQuery();
+
+			results.next();
+
+			String name = results.getString(2);
+			String description = results.getString(4);
+			String weight = results.getString(3);
+			String similar = results.getString(5);
+
+			UserStory story = new UserStory(id, name, description, weight, similar);
+			return story;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public static List<LegacyProject> GetLegacyProjectsFromDB()

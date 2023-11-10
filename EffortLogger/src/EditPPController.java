@@ -25,10 +25,9 @@ public class EditPPController implements Initializable{
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	
+
+	@FXML private Button newUSButton;
 	@FXML private Button editUSButton;
-	@FXML private Button editHUSButton;
-	@FXML private ListView<String> listHUS;
 	@FXML private ListView<UserStory> listUS;
 
 	@Override
@@ -48,19 +47,33 @@ public class EditPPController implements Initializable{
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
+	// 0 if creating new
+	// value if editing
+	public static String editId = null;
+
 	public void switchToUS(ActionEvent event) throws IOException
 	{
-		if ((event.getSource().equals(editUSButton) && listUS.getSelectionModel().getSelectedItem() != null) 
-				|| (event.getSource().equals(editHUSButton) && listHUS.getSelectionModel().getSelectedItem() != null)
-				|| (!event.getSource().equals(editUSButton)))
+		if (event.getSource().equals(newUSButton))
 		{
-			root = FXMLLoader.load(getClass().getResource("editUserStory.fxml"));
-			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+			editId = null;
 		}
+
+		else if (listUS.getSelectionModel().getSelectedItem() != null)
+		{
+			editId = ((UserStory) listUS.getSelectionModel().getSelectedItem()).id;
+		}
+
+		else
+		{
+			return;
+		}
+
+		root = FXMLLoader.load(getClass().getResource("editUserStory.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public void testSemaphores(ActionEvent event)

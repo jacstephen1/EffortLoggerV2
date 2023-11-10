@@ -65,7 +65,7 @@
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button layoutX="486.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="New">
+            <Button fx:id="newUSButton" layoutX="486.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="New">
                <font>
                   <Font size="16.0" />
                </font>

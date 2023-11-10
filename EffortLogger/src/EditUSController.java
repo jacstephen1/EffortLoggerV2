@@ -22,6 +22,19 @@ public class EditUSController {
 	private TextArea b;
 	@FXML
 	private TextField c;
+	private String id = null;
+
+	@FXML
+	public void initialize() {
+		if (EditPPController.editId != null)
+		{
+			UserStory story = DBUtils.GetUserStoryById(EditPPController.editId);
+			a.setText(story.name);
+			b.setText(story.description);
+			c.setText(story.weight);
+			id = story.id;
+		}
+	}
 	
 	public void switchToEditPP(ActionEvent event) throws IOException
 	{
@@ -38,6 +51,7 @@ public class EditUSController {
 		String description = b.getText();
 		String similar = null;
 
-		boolean created = DBUtils.createUserStory(name,weight,description,null);
+		// will update or create
+		boolean created = DBUtils.createUserStory(name,weight,description,null, id);
     }
 }
