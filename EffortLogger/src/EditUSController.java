@@ -1,11 +1,16 @@
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,6 +21,7 @@ public class EditUSController {
 	private Scene scene;
 	private Parent root;
 
+	@FXML private ListView<UserStory> listUS;
 	@FXML
 	private TextField a;
 	@FXML
@@ -26,6 +32,12 @@ public class EditUSController {
 
 	@FXML
 	public void initialize() {
+
+		List<UserStory> stories = DBUtils.GetUserStoriesFromDB();
+		stories.removeIf(story -> Objects.equals(((UserStory) story).id, EditPPController.editId));
+		listUS.getItems().addAll(stories);
+		listUS.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 		if (EditPPController.editId != null)
 		{
 			UserStory story = DBUtils.GetUserStoryById(EditPPController.editId);
@@ -33,7 +45,26 @@ public class EditUSController {
 			b.setText(story.description);
 			c.setText(story.weight);
 			id = story.id;
+
+			if (story.similar != null)
+			{
+				String[] similarIds = story.similar.split(",");
+
+				for (int i=0; i<listUS.getItems().size(); i++)
+				{
+					UserStory istory = listUS.getItems().get(i);
+					for (String id : similarIds)
+					{
+						if (id.equals(istory.id))
+						{
+							listUS.getSelectionModel().select(i);
+						}
+					}
+				}
+			}
+
 		}
+
 	}
 	
 	public void switchToEditPP(ActionEvent event) throws IOException
@@ -49,9 +80,18 @@ public class EditUSController {
 		String name = a.getText();
 		String weight = c.getText();
 		String description = b.getText();
-		String similar = null;
+		ObservableList<UserStory> list = listUS.getSelectionModel().getSelectedItems();
+		String similar = list.isEmpty() ? null : "";
+        for (UserStory userStory : list) {
+            similar += userStory.id + ",";
+        }
+		if (similar != null && !similar.isEmpty())
+		{
+			similar = similar.substring(0, similar.length()-1);
+		}
+
 
 		// will update or create
-		boolean created = DBUtils.createUserStory(name,weight,description,null, id);
+		boolean created = DBUtils.createUserStory(name,weight,description,similar, id);
     }
 }
