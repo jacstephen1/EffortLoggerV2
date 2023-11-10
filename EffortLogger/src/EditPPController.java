@@ -18,6 +18,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class EditPPController implements Initializable{
@@ -30,13 +32,31 @@ public class EditPPController implements Initializable{
 	@FXML private Button editUSButton;
 	@FXML private ListView<UserStory> listUS;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	@FXML private TextArea tfDesc;
+	@FXML private TextField tfName;
 
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1)
+	{
 		List<UserStory> stories = DBUtils.GetUserStoriesFromDB();
 		listUS.getItems().addAll(stories);
 
+		if (PPMainController.editId != null)
+		{
+			LegacyProject project = DBUtils.GetLegacyProjectById(PPMainController.editId);
+			tfName.setText(project.title);
+			tfDesc.setText(project.description);
 
+			String id = project.user_story_id;
+
+			for (int i=0; i<stories.size(); i++)
+			{
+				if (stories.get(i).id.equals(id))
+				{
+					listUS.getSelectionModel().select(i);
+				}
+			}
+		}
 	}
 	
 	public void switchToPPMain(ActionEvent event) throws IOException
@@ -76,8 +96,14 @@ public class EditPPController implements Initializable{
 		stage.show();
 	}
 
-	public void testSemaphores(ActionEvent event)
+	public void Save(ActionEvent event)
 	{
-		System.out.println("Test");
+		String name = tfName.getText();
+		String desc = tfDesc.getText();
+		UserStory story = listUS.getSelectionModel().getSelectedItem();
+
+		String sid = PPMainController.editId;
+
+		DBUtils.createProject(name,desc,story,sid);
 	}
 }

@@ -32,7 +32,7 @@
                   <Font size="40.0" />
                </font>
             </Text>
-            <Button layoutX="819.0" layoutY="14.0" mnemonicParsing="false" text="Save" onAction="#testSemaphores">
+            <Button layoutX="819.0" layoutY="14.0" mnemonicParsing="false" text="Save" onAction="#Save">
                <font>
                   <Font size="20.0" />
                </font>
@@ -51,7 +51,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextArea layoutX="36.0" layoutY="120.0" prefHeight="380.0" prefWidth="350.0" />
+            <TextArea fx:id="tfDesc" layoutX="36.0" layoutY="120.0" prefHeight="380.0" prefWidth="350.0" />
 <!--            <ListView fx:id="listHUS" layoutX="486.0" layoutY="44.0" prefHeight="200.0" prefWidth="350.0" />-->
 <!--            <Label layoutX="585.0" layoutY="262.0" text="User Stories">-->
             <Label layoutX="585.0" layoutY="7.0" text="User Stories">
@@ -75,7 +75,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="36.0" layoutY="44.0" prefHeight="25.0" prefWidth="350.0" />
+            <TextField fx:id="tfName" layoutX="36.0" layoutY="44.0" prefHeight="25.0" prefWidth="350.0" />
 <!--            <Button fx:id="editHUSButton" layoutX="782.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="Edit">-->
 <!--               <font>-->
 <!--                  <Font size="16.0" />-->

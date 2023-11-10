@@ -352,17 +352,120 @@ public class DBUtils {
 		}
 	}
 
-	public static List<LegacyProject> GetLegacyProjectsFromDB()
+	public static LegacyProject GetLegacyProjectById(String id)
 	{
 		//SQL Database Prep
 		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet results = null;
+
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+			ps = connection.prepareStatement("SELECT * FROM legacy_projects WHERE ID = ?");
+			ps.setString(1,  id);
+			results = ps.executeQuery();
+
+			results.next();
+
+			String name = results.getString(2);
+			String description = results.getString(3);
+			String story_id = results.getString(4);
+
+			LegacyProject project = new LegacyProject(id, name, description, story_id);
+			return project;
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public static List<LegacyProject> GetLegacyProjectsFromDB()
+	{
+		ArrayList<LegacyProject> list = new ArrayList<>();
+
+		//SQL Database Prep
+		Connection connection = null;
 		PreparedStatement psInsert = null;
-		PreparedStatement psCheckID = null;
-		PreparedStatement psCheckUserExists = null;
-		ResultSet resultSet = null;
+		ResultSet results = null;
 
-		// TODO return select * from legacyProjects
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+			psInsert = connection.prepareStatement("SELECT * FROM legacy_projects");
+			results = psInsert.executeQuery();
 
-		return null;
+			while (results.next())
+			{
+				String id = results.getString(1);
+				String name = results.getString(2);
+				String description = results.getString(3);
+				String story_id = results.getString(4);
+
+				LegacyProject project = new LegacyProject(id, name, description, story_id);
+				list.add(project);
+			}
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return list;
+	}
+
+	public static boolean createProject(String name, String description, UserStory story, String sid)
+	{
+
+		if (name == null || name == "" || story == null || description == null || description == "")
+		{
+			return false;
+		}
+
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement psInsert = null;
+
+		// If given id is null, create
+		if (sid == null)
+		{
+			long id = System.currentTimeMillis();
+
+			try {
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+				psInsert = connection.prepareStatement("INSERT INTO legacy_projects (id, title, description, user_story_id) VALUES (?, ?, ?, ?)");
+				psInsert.setString(1, String.valueOf(id));
+				psInsert.setString(2, name);
+				psInsert.setString(3, description);
+				psInsert.setString(4, story.id);
+				int result = psInsert.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+			return true;
+		}
+
+		// Otherwise, update
+		else
+		{
+			try {
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+				// UPDATE user_stories SET name = ?, weight = ?, description = ?, similar_stories = ? WHERE id = ?
+				psInsert = connection.prepareStatement("UPDATE legacy_projects SET title = ?, description = ?, user_story_id = ? WHERE id = ?");
+				psInsert.setString(1, name);
+				psInsert.setString(2, description);
+				psInsert.setString(3, story.id);
+				psInsert.setString(4, sid);
+				int result = psInsert.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+
+			return true;
+		}
 	}
 }
