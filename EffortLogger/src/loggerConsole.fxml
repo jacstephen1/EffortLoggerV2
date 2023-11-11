@@ -32,8 +32,8 @@
       </Pane>
       <Pane prefHeight="450.0" prefWidth="918.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00d700" height="36.0" layoutX="138.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
-            <Label layoutX="383.0" layoutY="17.0" text="Clock is running" textFill="WHITE">
+            <Rectangle fx:id="recRG" arcHeight="5.0" arcWidth="5.0" fill="#00d700" height="36.0" layoutX="138.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
+            <Label fx:id="clockText" layoutX="383.0" layoutY="17.0" text="Clock is running" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -48,15 +48,15 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="43.0" layoutY="97.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" text="Start Activity">
+            <Button layoutX="43.0" layoutY="97.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" onAction="#startPress" text="Start Activity">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <ComboBox layoutX="41.0" layoutY="312.0" prefHeight="25.0" prefWidth="202.0" />
-            <ComboBox layoutX="423.0" layoutY="229.0" prefHeight="25.0" prefWidth="339.0" />
-            <ComboBox layoutX="41.0" layoutY="229.0" prefHeight="25.0" prefWidth="339.0" />
-            <ComboBox layoutX="291.0" layoutY="312.0" prefHeight="25.0" prefWidth="476.0" />
+            <ComboBox fx:id="effort" layoutX="41.0" layoutY="312.0" prefHeight="25.0" prefWidth="202.0" />
+            <ComboBox fx:id="lifeCycle" layoutX="423.0" layoutY="229.0" prefHeight="25.0" prefWidth="339.0" />
+            <ComboBox fx:id="project" layoutX="41.0" layoutY="229.0" prefHeight="25.0" prefWidth="339.0" />
+            <ComboBox fx:id="deliverable" layoutX="291.0" layoutY="312.0" prefHeight="25.0" prefWidth="476.0" />
             <Text layoutX="41.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project:">
                <font>
                   <Font size="20.0" />
@@ -82,7 +82,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="43.0" layoutY="404.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" text="Stop Activity">
+            <Button layoutX="43.0" layoutY="404.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="170.0" onAction="#stopPress" text="Stop Activity">
                <font>
                   <Font size="20.0" />
                </font>
