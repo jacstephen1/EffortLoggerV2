@@ -110,6 +110,7 @@ public class DBUtils {
 					
 					Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
 					Main.user.createTables();
+					Main.user.retrieveTables();
 									
 					changeScene(event, "main.fxml", username);
 				} 
@@ -206,6 +207,7 @@ public class DBUtils {
 							resultID.next();
 							
 							Main.user.setInfo(resultID.getInt("user_id"), username, password,resultID.getString("user_role"));
+							Main.user.retrieveTables();
 							
 							changeScene(event, "main.fxml", username);
 						}
@@ -391,7 +393,7 @@ public class DBUtils {
 					+ "deliverable TEXT, "
 					+ "interruption TEXT, "
 					+ "defect TEXT, "
-					+ "other TEXT"
+					+ "other TEXT, "
 					+ "PRIMARY KEY (id)"
 					+ ");");
 			psCreate.executeUpdate();

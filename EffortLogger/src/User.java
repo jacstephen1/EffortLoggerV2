@@ -31,14 +31,7 @@ public class User {
 		password = pass;
 		role = compRole;
 		
-		if (id > 0)
-		{
-			DBUtils.retrieveUserTable("effort_logs", userId);
-			DBUtils.retrieveUserTable("defect_logs", userId);
-			DBUtils.retrieveUserTable("pp_projects", userId);
-			DBUtils.retrieveUserTable("user_stories", userId);
-		}
-		else
+		if (id < 0)
 		{
 			try {
 				clearInfo("effort_logs");
@@ -55,13 +48,29 @@ public class User {
 	//Create User Tables
 	public void createTables()
 	{
-		if (id == -1)
+		if (id < 0)
 		{
 			return;
 		}
 		else
-		{	
+		{
 			DBUtils.createNewUserTables(id);
+		}
+	}
+	
+	public void retrieveTables()
+	{
+		
+		if (id < 0)
+		{
+			return;
+		}
+		else
+		{
+			DBUtils.retrieveUserTable("effort_logs", id);
+			DBUtils.retrieveUserTable("defect_logs", id);
+			DBUtils.retrieveUserTable("pp_projects", id);
+			DBUtils.retrieveUserTable("user_stories", id);
 		}
 	}
 	

@@ -93,7 +93,7 @@ public class Log {
 		fix = fixed;
 	}
 	
-	public void saveToSQL(String logType)
+	public void saveToFiles(String logType)
 	{
 		
 	}
