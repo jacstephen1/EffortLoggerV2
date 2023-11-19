@@ -231,6 +231,7 @@ public class DBUtils {
 		}
 	}
 
+	// Create or update user story in the DB, based off whether sid is NULL
 	public static boolean createUserStory(String name, String weight, String description, String similar, String sid)
 	{
 
@@ -289,6 +290,7 @@ public class DBUtils {
 		}
 	}
 
+	// Get user stories from DB in list form
 	public static ArrayList<UserStory> GetUserStoriesFromDB()
 	{
 		ArrayList<UserStory> list = new ArrayList<>();
@@ -323,6 +325,7 @@ public class DBUtils {
 		return list;
 	}
 
+	// Get specific user story by ID
 	public static UserStory GetUserStoryById(String id)
 	{
 		//SQL Database Prep
@@ -352,6 +355,7 @@ public class DBUtils {
 		}
 	}
 
+	// Get specific legacy project by unique ID
 	public static LegacyProject GetLegacyProjectById(String id)
 	{
 		//SQL Database Prep
@@ -380,6 +384,7 @@ public class DBUtils {
 		}
 	}
 
+	// Gets list of all LegacyProjects in the DB
 	public static List<LegacyProject> GetLegacyProjectsFromDB()
 	{
 		ArrayList<LegacyProject> list = new ArrayList<>();
@@ -413,6 +418,7 @@ public class DBUtils {
 		return list;
 	}
 
+	// Creates or updates a planning poker project, based on whether sid in NULL
 	public static boolean createProject(String name, String description, UserStory story, String sid)
 	{
 
