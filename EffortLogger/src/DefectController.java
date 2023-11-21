@@ -1,16 +1,6 @@
-/*
- * Author: Jacob Wetherell
- * ASU ID: 1224869945
- * CSE 360 EffortLogger 2.0 Development
- */
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +12,6 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class DefectController {
@@ -50,6 +39,7 @@ public class DefectController {
 		stage.show();
 	}
 	
+	/* UNIMPLEMENTED FUNCTION
 	public void popDefectBox(ActionEvent event) throws IOException
 	{
 		//replace false with a while the database table still has elements 
@@ -61,17 +51,18 @@ public class DefectController {
 			defects.getItems().addAll(str);
 		 }
 	}
+	*/
 	
 	public void popDefectRest(ActionEvent event) throws IOException
 	{
-		int index;
+		int index = 0;
 		int i = 0;
 		//change the nulls out for strings you get from the table with the right defectName
 		fix.setText(null);
 		defectName.setText(null);
 		cause.setText(null);
 		//get the string to equal the injection life cycle step
-		String strInject;
+		String strInject = null;
 		//change null to table isnt empty
 		BufferedReader bfr = null;
 		try 
