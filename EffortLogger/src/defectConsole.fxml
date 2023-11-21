@@ -91,13 +91,13 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <TextField layoutX="390.0" layoutY="490.0" prefHeight="25.0" prefWidth="433.0" />
+      <TextField fx:id="fix" layoutX="390.0" layoutY="490.0" prefHeight="25.0" prefWidth="433.0" />
       <Text layoutX="15.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Press the &quot;Update the Current Defect&quot; to save the changes made above." wrappingWidth="586.1366882324219">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <Text layoutX="60.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No defects for this project." wrappingWidth="210.13671875">
+      <Text fx:id="noDefect" layoutX="60.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No defects for this project." wrappingWidth="210.13671875">
          <font>
             <Font size="14.0" />
          </font>
@@ -137,12 +137,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <TextField layoutX="59.0" layoutY="291.0" prefHeight="33.0" prefWidth="266.0" />
-      <TextField layoutX="59.0" layoutY="359.0" prefHeight="33.0" prefWidth="767.0" />
-      <ComboBox layoutX="55.0" layoutY="115.0" prefHeight="25.0" prefWidth="409.0" />
-      <ComboBox layoutX="55.0" layoutY="204.0" prefHeight="25.0" prefWidth="409.0" />
-      <ListView layoutX="60.0" layoutY="414.0" prefHeight="74.0" prefWidth="210.0" />
-      <ListView layoutX="347.0" layoutY="414.0" prefHeight="74.0" prefWidth="210.0" />
-      <ListView layoutX="615.0" layoutY="414.0" prefHeight="74.0" prefWidth="210.0" />
+      <TextField fx:id="defectName" layoutX="59.0" layoutY="291.0" prefHeight="33.0" prefWidth="266.0" />
+      <TextField fx:id="cause" layoutX="59.0" layoutY="359.0" prefHeight="33.0" prefWidth="767.0" />
+      <ComboBox fx:id="project" layoutX="55.0" layoutY="115.0" prefHeight="25.0" prefWidth="409.0" onAction="#popDefectBox" />
+      <ComboBox fx:id="defects" layoutX="55.0" layoutY="204.0" prefHeight="25.0" prefWidth="409.0" onAction="#popDefectRest" />
+      <ListView fx:id="injection" layoutX="60.0" layoutY="414.0" prefHeight="74.0" prefWidth="210.0" />
+      <ListView fx:id="removal" layoutX="347.0" layoutY="414.0" prefHeight="74.0" prefWidth="210.0" />
+      <ListView fx:id="category" layoutX="615.0" layoutY="414.0" prefHeight="74.0" prefWidth="210.0" />
    </children>
 </AnchorPane>
