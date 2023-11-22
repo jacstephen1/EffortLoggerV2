@@ -29,6 +29,15 @@ public class ELHubController {
 		stage.show();
 	}
 	
+	public void switchToStatus(ActionEvent event) throws IOException
+	{
+		root = FXMLLoader.load(getClass().getResource("teamStatus.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	public void switchToLoggerConsole(ActionEvent event) throws IOException
 	{
 		root = FXMLLoader.load(getClass().getResource("loggerConsole.fxml"));

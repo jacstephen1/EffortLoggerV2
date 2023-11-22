@@ -35,42 +35,56 @@
       </Pane>
       <Pane prefHeight="530.0" prefWidth="900.0">
          <children>
-            <Button layoutX="620.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToDefinitions" prefHeight="200.0" prefWidth="200.0">
+            <Button layoutX="459.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToDefinitions" prefHeight="190.0" prefWidth="190.0">
                <graphic>
-                  <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlaceholderLC.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="350.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToLogViewer" prefHeight="200.0" prefWidth="200.0">
+            <Button layoutX="236.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToLogViewer" prefHeight="190.0" prefWidth="190.0">
                <graphic>
-                  <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlaceholderLC.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="80.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToLoggerConsole" prefHeight="200.0" prefWidth="200.0">
+            <Button layoutX="14.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToLoggerConsole" prefHeight="190.0" prefWidth="190.0">
                <graphic>
-                  <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../PlaceholderLC.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Label layoutX="84.0" layoutY="337.0" text="Effort Logger Console">
+            <Label layoutX="21.0" layoutY="337.0" text="Effort Logger Console">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="401.0" layoutY="337.0" text="Log Viewer">
+            <Label layoutX="290.0" layoutY="337.0" text="Log Viewer">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="673.0" layoutY="337.0" text="Definitions">
+            <Label layoutX="515.0" layoutY="337.0" text="Definitions">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="681.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToStatus" prefHeight="190.0" prefWidth="190.0">
+               <graphic>
+                  <ImageView fitHeight="190.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../PlaceholderLC.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="726.0" layoutY="337.0" text="Defect Status">
                <font>
                   <Font size="20.0" />
                </font>
