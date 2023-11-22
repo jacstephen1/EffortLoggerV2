@@ -35,7 +35,7 @@
             </Text>
             <HBox layoutX="669.0" layoutY="15.0" prefHeight="44.0" prefWidth="217.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToEditPP" text="New">
+                  <Button mnemonicParsing="false" onAction="#New" text="New">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -43,7 +43,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="editPPButton" mnemonicParsing="false" onAction="#switchToEditPP" text="Edit">
+                  <Button fx:id="editPPButton" mnemonicParsing="false" onAction="#Edit" text="Edit">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -51,7 +51,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Save">
+                  <Button mnemonicParsing="false" text="Save" onAction="#Save">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -73,13 +73,13 @@
                </font>
             </Label>
             <ListView fx:id="projectList" layoutX="53.0" layoutY="39.0" onMouseClicked="#projectListViewUpdate" prefHeight="460.0" prefWidth="350.0" />
-            <TextArea fx:id="projectInfo" editable="false" layoutX="512.0" layoutY="39.0" prefHeight="94.0" prefWidth="350.0" text="PROJECT INFO [MAKE EDITABLE WHEN EDIT BUTTON SELECTED]" wrapText="true" />
+            <TextArea fx:id="projectInfo" editable="false" layoutX="512.0" layoutY="39.0" prefHeight="94.0" prefWidth="350.0" text="" wrapText="true" />
             <Label layoutX="635.0" layoutY="148.0" text="User Stories">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="projectList1" layoutX="512.0" layoutY="179.0" prefHeight="320.0" prefWidth="350.0" />
+            <ListView fx:id="UserStories" layoutX="512.0" layoutY="179.0" prefHeight="320.0" prefWidth="350.0" />
          </children>
       </Pane>
    </children>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
- Author: Jacob Wetherell
+ Original Author: Jacob Wetherell
  ASU ID: 1224869945
  CSE 360 EffortLogger 2.0 Development
 -->
@@ -32,7 +32,7 @@
                   <Font size="40.0" />
                </font>
             </Text>
-            <Button layoutX="819.0" layoutY="14.0" mnemonicParsing="false" text="Save">
+            <Button layoutX="819.0" layoutY="14.0" mnemonicParsing="false" text="Save" onAction="#Save">
                <font>
                   <Font size="20.0" />
                </font>
@@ -41,30 +41,31 @@
       </Pane>
       <Pane prefHeight="530.0" prefWidth="900.0">
          <children>
-            <Label layoutX="572.0" layoutY="7.0" text="Historic User Stories">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+<!--            <Label layoutX="572.0" layoutY="7.0" text="Historic User Stories">-->
+<!--               <font>-->
+<!--                  <Font size="20.0" />-->
+<!--               </font>-->
+<!--            </Label>-->
             <Label layoutX="92.0" layoutY="88.0" text="Planning Poker Description">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextArea layoutX="36.0" layoutY="120.0" prefHeight="380.0" prefWidth="350.0" />
-            <ListView fx:id="listHUS" layoutX="486.0" layoutY="44.0" prefHeight="200.0" prefWidth="350.0" />
-            <Label layoutX="585.0" layoutY="262.0" text="Your User Stories">
+            <TextArea fx:id="tfDesc" layoutX="36.0" layoutY="120.0" prefHeight="380.0" prefWidth="350.0" />
+<!--            <ListView fx:id="listHUS" layoutX="486.0" layoutY="44.0" prefHeight="200.0" prefWidth="350.0" />-->
+<!--            <Label layoutX="585.0" layoutY="262.0" text="User Stories">-->
+            <Label layoutX="585.0" layoutY="7.0" text="User Stories">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <ListView fx:id="listUS" layoutX="486.0" layoutY="300.0" prefHeight="200.0" prefWidth="350.0" />
-            <Button fx:id="editUSButton" layoutX="782.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="Edit">
+            <ListView fx:id="listUS" layoutX="486.0" layoutY="47.0" prefHeight="450.0" prefWidth="350.0" />
+            <Button fx:id="editUSButton" layoutX="782.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="Edit">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button layoutX="486.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="New">
+            <Button fx:id="newUSButton" layoutX="486.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="New">
                <font>
                   <Font size="16.0" />
                </font>
@@ -74,12 +75,12 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="36.0" layoutY="44.0" prefHeight="25.0" prefWidth="350.0" />
-            <Button fx:id="editHUSButton" layoutX="782.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="Edit">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
+            <TextField fx:id="tfName" layoutX="36.0" layoutY="44.0" prefHeight="25.0" prefWidth="350.0" />
+<!--            <Button fx:id="editHUSButton" layoutX="782.0" layoutY="5.0" mnemonicParsing="false" onAction="#switchToUS" prefHeight="30.0" prefWidth="54.0" text="Edit">-->
+<!--               <font>-->
+<!--                  <Font size="16.0" />-->
+<!--               </font>-->
+<!--            </Button>-->
          </children>
       </Pane>
    </children>
