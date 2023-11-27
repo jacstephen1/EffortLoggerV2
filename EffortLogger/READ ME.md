@@ -2,7 +2,6 @@ EffortLoggerV2
 CSE360 Final Project EffortLogger V2
 
 Company code is currently set to 000
-Username = admin, password = password
 
 [IMPORTANT] SQL DATABASE NOTES [IMPORTANT]
 Users will need to setup a mysql database for local storage
@@ -19,10 +18,11 @@ MySQL Database Setup Video -- https://youtu.be/OM4aZJW_Ojs (Credit to Amit Think
 3. Click on the schemas tab and create a new schema called effortlogger_db
 4. Double click on effortlogger_db to select the database, the text should become bold
 5. Click the drop down menu under effortlogger_db and right click on tables and click import "Table Data Import Wizard"
-6. Import all the files in the default folder inside lib except the effortlogger_db_users.csv file
-7. Then import the effortlogger_db_users.csv and do the following
-8. Right click on the users table and click "alter tables..."
-9. Next to user_id checkmark the following boxes: PK, NN, AI
-10. Click apply in the bottom right
+6. Import effortlogger_db_users.csv file
+7. Right click on the users table and click "alter tables..."
+8. Next to user_id checkmark the following boxes: PK, NN, AI
+9. Click apply in the bottom right
 11a. To check if its working you can go to the query table in type: SELECT * FROM users
 11b. Then execute the query which should return the users table
+
+NOTE: The users table no longer contains an admin, an admin account can be created through the sign up page
