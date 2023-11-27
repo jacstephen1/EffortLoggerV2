@@ -1,7 +1,7 @@
 EffortLoggerV2
 CSE360 Final Project EffortLogger V2
 
-Company code is currently set to 000
+Company code is currently set to 012345
 
 [IMPORTANT] SQL DATABASE NOTES [IMPORTANT]
 Users will need to setup a mysql database for local storage

@@ -27,6 +27,9 @@ public class SignupController implements Initializable{
 	private Scene scene;
 	private Parent root;
 	
+	//COMPANY CODE
+	private String code = "012345";
+	
 	@FXML private TextField user;
 	@FXML private TextField password;
 	@FXML private TextField confirmPassword;
@@ -57,7 +60,7 @@ public class SignupController implements Initializable{
 			else
 			{
 				//Check company code and check passwords and the same
-				if (companyCode.getText().equals("000") && password.getText().trim().equals(confirmPassword.getText().trim()))
+				if (companyCode.getText().equals(code) && password.getText().trim().equals(confirmPassword.getText().trim()))
 				{
 					DBUtils.signUpUser(event, user.getText().trim(), password.getText().trim(), companyRole.getSelectionModel().getSelectedItem());
 				}
