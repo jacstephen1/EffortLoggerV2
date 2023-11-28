@@ -92,6 +92,6 @@ public class EditUSController {
 
 
 		// will update or create
-		boolean created = DBUtils.createUserStory(name,weight,description,similar, id);
+		DBUtils.createUserStory(name,weight,description,similar, id);
     }
 }

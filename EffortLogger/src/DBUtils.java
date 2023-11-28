@@ -232,12 +232,12 @@ public class DBUtils {
 	}
 
 	// Create or update user story in the DB, based off whether sid is NULL
-	public static boolean createUserStory(String name, String weight, String description, String similar, String sid)
+	public static String createUserStory(String name, String weight, String description, String similar, String sid)
 	{
 
 		if (name == null || name == "" || weight == null || weight == "" || description == null || description == "")
 		{
-			return false;
+			return null;
 		}
 
 		//SQL Database Prep
@@ -261,10 +261,10 @@ public class DBUtils {
 				int result = psInsert.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 
-			return true;
+			return String.valueOf(id);
 		}
 
 		// Otherwise, update
@@ -283,10 +283,42 @@ public class DBUtils {
 				int result = psInsert.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 
-			return true;
+			return sid;
+		}
+	}
+
+	public static void DeleteUserStory(String id)
+	{
+		Connection connection = null;
+		PreparedStatement psInsert = null;
+
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+			psInsert = connection.prepareStatement("DELETE FROM user_stories WHERE id = ?");
+			psInsert.setString(1, id);
+			int result = psInsert.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void DeleteLegacyProject(String id)
+	{
+		Connection connection = null;
+		PreparedStatement psInsert = null;
+
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", PASSWORD);
+			psInsert = connection.prepareStatement("DELETE FROM legacy_projects WHERE id = ?");
+			psInsert.setString(1, id);
+			int result = psInsert.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -385,7 +417,7 @@ public class DBUtils {
 	}
 
 	// Gets list of all LegacyProjects in the DB
-	public static List<LegacyProject> GetLegacyProjectsFromDB()
+	public static ArrayList<LegacyProject> GetLegacyProjectsFromDB()
 	{
 		ArrayList<LegacyProject> list = new ArrayList<>();
 
@@ -419,12 +451,12 @@ public class DBUtils {
 	}
 
 	// Creates or updates a planning poker project, based on whether sid in NULL
-	public static boolean createProject(String name, String description, UserStory story, String sid)
+	public static String createProject(String name, String description, UserStory story, String sid)
 	{
 
 		if (name == null || name == "" || story == null || description == null || description == "")
 		{
-			return false;
+			return null;
 		}
 
 		//SQL Database Prep
@@ -447,10 +479,10 @@ public class DBUtils {
 				int result = psInsert.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 
-			return true;
+			return String.valueOf(id);
 		}
 
 		// Otherwise, update
@@ -468,10 +500,10 @@ public class DBUtils {
 				int result = psInsert.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return false;
+				return null;
 			}
 
-			return true;
+			return sid;
 		}
 	}
 }

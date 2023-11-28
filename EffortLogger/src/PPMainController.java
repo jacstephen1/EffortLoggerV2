@@ -45,7 +45,7 @@ public class PPMainController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		List<LegacyProject> legacyProjects = DBUtils.GetLegacyProjectsFromDB();
+		ArrayList<LegacyProject> legacyProjects = DBUtils.GetLegacyProjectsFromDB();
 		projectList.getItems().addAll(legacyProjects);
 
 		UserStories.setMouseTransparent( true );
