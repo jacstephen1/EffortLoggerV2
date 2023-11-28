@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class EditPPController implements Initializable{
@@ -38,7 +36,9 @@ public class EditPPController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1)
 	{
 		List<UserStory> stories = DBUtils.GetUserStoriesFromDB(Main.user.getId());
+		stories.sort(new UserStoryComparable());
 		listUS.getItems().addAll(stories);
+		listUS.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		if (PPMainController.editId != null)
 		{
@@ -46,13 +46,18 @@ public class EditPPController implements Initializable{
 			tfName.setText(project.title);
 			tfDesc.setText(project.description);
 
-			String id = project.user_story_id;
+			String[] ids = project.user_story_id.split(" ");
+
+
 
 			for (int i=0; i<stories.size(); i++)
 			{
-				if (stories.get(i).id.equals(id))
+				for (String id : ids)
 				{
-					listUS.getSelectionModel().select(i);
+					if (stories.get(i).id.equals(id))
+					{
+						listUS.getSelectionModel().select(i);
+					}
 				}
 			}
 		}
@@ -99,7 +104,8 @@ public class EditPPController implements Initializable{
 	{
 		String name = tfName.getText();
 		String desc = tfDesc.getText();
-		UserStory story = listUS.getSelectionModel().getSelectedItem();
+		ObservableList<UserStory> stories = listUS.getSelectionModel().getSelectedItems();
+
 
 		String sid = PPMainController.editId;
 

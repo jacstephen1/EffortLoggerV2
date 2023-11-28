@@ -642,10 +642,10 @@ public class DBUtils {
 	}
 
 	// Creates or updates a planning poker project, based on whether sid in NULL
-	public static boolean createProject(int id, String name, String description, UserStory story, String sid)
+	public static boolean createProject(int id, String name, String description, ObservableList<UserStory> stories, String sid)
 	{
 
-		if (name == null || name == "" || story == null || description == null || description == "")
+		if (name == null || name == "" || stories == null || stories.isEmpty() || description == null || description == "")
 		{
 			return false;
 		}
@@ -653,6 +653,14 @@ public class DBUtils {
 		//SQL Database Prep
 		Connection connection = null;
 		PreparedStatement psInsert = null;
+
+		// Join story ids
+		String joinedId = "";
+		for(UserStory story : stories)
+		{
+			joinedId += story.id + " ";
+		}
+		joinedId = joinedId.trim();
 
 		// If given id is null, create
 		if (sid == null)
@@ -666,7 +674,7 @@ public class DBUtils {
 				psInsert.setString(1, sid);
 				psInsert.setString(2, name);
 				psInsert.setString(3, description);
-				psInsert.setString(4, story.id);
+				psInsert.setString(4, joinedId);
 				int result = psInsert.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -686,7 +694,7 @@ public class DBUtils {
 				psInsert = connection.prepareStatement("UPDATE pp_projects_" + id + " SET name = ?, description = ?, user_story_id = ? WHERE id = ?");
 				psInsert.setString(1, name);
 				psInsert.setString(2, description);
-				psInsert.setString(3, story.id);
+				psInsert.setString(3, joinedId);
 				psInsert.setString(4, sid);
 				int result = psInsert.executeUpdate();
 			} catch (SQLException e) {

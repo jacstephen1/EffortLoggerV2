@@ -1,6 +1,9 @@
 /*
  * Author: Charlie Baird
  */
+
+import java.util.Comparator;
+
 public class UserStory {
     public String id;
     public String name;
@@ -20,5 +23,14 @@ public class UserStory {
     public String toString()
     {
         return this.name;
+    }
+}
+
+class UserStoryComparable implements Comparator<UserStory>
+{
+
+    @Override
+    public int compare(UserStory o1, UserStory o2) {
+        return Integer.valueOf(o2.weight) - Integer.valueOf(o1.weight);
     }
 }

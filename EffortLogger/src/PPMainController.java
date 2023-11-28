@@ -96,10 +96,22 @@ public class PPMainController implements Initializable{
 			projectInfo.setText(selected.description);
 			UserStories.getItems().clear();
 
-			String id = selected.user_story_id;
 			UserStory story = DBUtils.GetUserStoryById(Main.user.getId(), id);
 			UserStories.getItems().add(story);
+			String ids = selected.user_story_id;
+			String[] split = ids.split(" ");
 
+			ArrayList<UserStory> stories = new ArrayList<>();
+
+			for (String id : split)
+			{
+				UserStory story = DBUtils.GetUserStoryById(id);
+				stories.add(story);
+			}
+
+			stories.sort(new UserStoryComparable());
+
+			UserStories.getItems().addAll(stories);
 		}
 	}
 
