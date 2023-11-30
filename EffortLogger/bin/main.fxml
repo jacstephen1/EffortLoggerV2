@@ -9,8 +9,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -50,21 +48,13 @@
                         <Font size="30.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="218.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../PlaceholderLC.png" />
-                           </image>
-                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EffortLogger" textAlignment="CENTER" wrappingWidth="299.73193359375">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
                      </graphic>
                   </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="EffortLogger" textAlignment="CENTER" wrappingWidth="299.73193359375">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Text>
                </children>
                <padding>
                   <Insets right="25.0" />
@@ -77,21 +67,13 @@
                         <Font size="30.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="218.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../PlaceholderLC.png" />
-                           </image>
-                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Planning Poker" textAlignment="CENTER" wrappingWidth="299.73193359375">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
                      </graphic>
                   </Button>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Planning Poker" textAlignment="CENTER" wrappingWidth="299.73193359375">
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="15.0" />
-                     </VBox.margin>
-                  </Text>
                </children>
                <HBox.margin>
                   <Insets left="25.0" />
