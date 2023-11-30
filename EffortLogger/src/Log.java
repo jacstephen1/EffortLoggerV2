@@ -1,6 +1,7 @@
 
 public class Log {
 	private String type;
+	private int id;
 	
 	//Effort
 	private String startTime;
@@ -13,7 +14,7 @@ public class Log {
 	private String deliverable;
 	private String interuption;
 	private String defect;
-	
+	private String other;
 	
 	//Defect
 	private String defectCategory;
@@ -22,6 +23,7 @@ public class Log {
 	private String injectedStep;
 	private String removedStep;
 	private String fix;
+	private int openClose;
 	
 	public Log(String t, String p)
 	{
@@ -38,6 +40,7 @@ public class Log {
 		project = p;
 		
 		//Default
+		id = 0;
 		startTime = null;
 		endTime = null;
 		date = null;
@@ -47,6 +50,7 @@ public class Log {
 		deliverable = null;
 		interuption = null;
 		defect = null;
+		other = null;
 		defectCategory = null;
 		defectName = null;
 		defectSymptom = null;
@@ -55,8 +59,9 @@ public class Log {
 		fix = null;
 	}
 	
-	public void createEffortLog(String sTime, String eTime, String d, String lcStep, String eCategory, String planType, String deliver, String interupt, String defec)
+	public void createEffortLog(int inid, String sTime, String eTime, String d, String lcStep, String eCategory, String planType, String deliver, String interupt, String defec, String oth)
 	{
+		id = inid;
 		startTime = sTime;
 		endTime = eTime;
 		date = d;
@@ -66,16 +71,19 @@ public class Log {
 		deliverable = deliver;
 		interuption = interupt;
 		defect = defec;
+		other = oth;
 		defectCategory = null;
 		defectName = null;
 		defectSymptom = null;
 		injectedStep = null;
 		removedStep = null;
 		fix = null;
+		openClose = 0;
 	}
 	
-	public void createDefectLog(String defect, String name, String symptom, String inject, String remove, String fixed)
+	public void createDefectLog(int inId, String defCat, String name, String symptom, String inject, String remove, String fixed, int oc)
 	{
+		id = inId;
 		startTime = null;
 		endTime = null;
 		date = null;
@@ -85,12 +93,78 @@ public class Log {
 		deliverable = null;
 		interuption = null;
 		defect = null;
-		defectCategory = defect;
+		other = null;
+		defectCategory = defCat;
 		defectName = name;
 		defectSymptom = symptom;
 		injectedStep = inject;
 		removedStep = remove;
 		fix = fixed;
+		openClose = oc;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int inId) {
+		id = inId;
+	}
+	public String getProject() {
+		return project; 
+	}
+	public String getStartTime() {
+		return startTime; 
+	}
+	public String getEndTime() {
+		return endTime; 
+	}
+	public String getDate() {
+		return date; 
+	}
+	public void setDate(String inDate) {
+		date = inDate;
+	}
+	public String getLifeCycleStep() {
+		return lifeCycleStep; 
+	}
+	public String getEffortCategory() {
+		return effortCategory; 
+	}
+	public String getPlan() {
+		return plan; 
+	}
+	public String getDeliverable() {
+		return deliverable; 
+	}
+	public String getInteruption() {
+		return interuption; 
+	}
+	public String getDefect() {
+		return defect; 
+	}
+	public String getOther() {
+		return other;
+	}
+	public String getDefectCategory() {
+		return defectCategory;
+	}
+	public String getDefectName() {
+		return defectName;
+	}
+	public String getDefectSymptom() {
+		return defectSymptom;
+	}
+	public String getDefectInjection() {
+		return injectedStep;
+	}
+	public String getDefectRemoval() {
+		return removedStep;
+	}
+	public String getDefectFix() {
+		return fix;
+	}
+	public int getOpenClose() {
+		return openClose;
 	}
 	
 	public void saveToFiles(String logType)

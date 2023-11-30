@@ -402,6 +402,11 @@ public class DBUtils {
 					+ ");");
 			psCreate.executeUpdate();
 			
+			//make an empty line for the 1st entry so that that your not reading from an empty table which causes an error
+			psCreate = connection.prepareStatement("INSERT effort_logs_" + id + 
+					" (project, start_time, end_time, date, lifecycle, category, plan, deliverable, interruption, defect) "
+					+ "VALUES ('empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty','empty');");
+			psCreate.executeUpdate();
 			
 			//Make Unique Defect Logs Table
 			psCreate = connection.prepareStatement("CREATE TABLE defect_logs_" + id + " ("
@@ -412,10 +417,16 @@ public class DBUtils {
 					+ "symptoms TEXT, "
 					+ "category TEXT, "
 					+ "fix TEXT, "
+					+ "openClose INT"
 					+ "PRIMARY KEY (name)"
 					+ ");");
 			psCreate.executeUpdate();
 			
+			//make an empty line for the 1st entry so that that your not reading from an empty table which causes an error
+			psCreate = connection.prepareStatement("INSERT defect_logs_" + id + 
+					" (project, name, inject, remove, symptoms, category, fix, openClose) "
+					+ "VALUES ('empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty');");
+			psCreate.executeUpdate();
 			
 			//Make Unique Planning Poker Project Table
 			psCreate = connection.prepareStatement("CREATE TABLE pp_projects_" + id + " ("
@@ -453,6 +464,338 @@ public class DBUtils {
 			}
 		}
 	}
+	
+	// Get specific user story by ID
+	public static Log getLastEffortLog()
+	{
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet results = null;
+
+		try
+		{
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+			ps = connection.prepareStatement("SELECT * FROM effort_logs_" + Main.user.getId() + " ORDER BY id DESC LIMIT 1;");
+			results = ps.executeQuery();
+
+			results.next();
+				
+			int entryid = results.getInt(1);
+			String project = results.getString(2);
+			String startTime = results.getString(3);
+			String endTime = results.getString(4);
+			String date = results.getString(5);
+			String lifeCycleStep = results.getString(6);
+			String effortCategory = results.getString(7);
+			String plan = results.getString(8);
+			String deliverable = results.getString(9);
+			String interuption = results.getString(10);
+			String defect = results.getString(11);
+			String other = results.getString(12);
+				
+			Log lastLog = new Log("effort", project);
+			lastLog.createEffortLog(entryid, startTime, endTime, date, lifeCycleStep, effortCategory, plan, deliverable, interuption, defect, other);
+			return lastLog;
+
+		}
+		catch (SQLException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+		
+	
+	// Get specific user story by ID
+	public static Log getEffortLogById(int inId)
+	{
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet results = null;
+		
+		try
+		{
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+			ps = connection.prepareStatement("SELECT * FROM effort_logs_" + Main.user.getId() + " WHERE id = ?;");
+			ps.setInt(1, inId);
+			results = ps.executeQuery();
+			results.next();
+				
+			int entryid = results.getInt(1);
+			String project = results.getString(2);
+			String startTime = results.getString(3);
+			String endTime = results.getString(4);
+			String date = results.getString(5);
+			String lifeCycleStep = results.getString(6);
+			String effortCategory = results.getString(7);
+			String plan = results.getString(8);
+			String deliverable = results.getString(9);
+			String interuption = results.getString(10);
+			String defect = results.getString(11);
+			String other = results.getString(12);
+				
+			Log lastLog = new Log("effort", project);
+			lastLog.createEffortLog(entryid, startTime, endTime, date, lifeCycleStep, effortCategory, plan, deliverable, interuption, defect, other);
+			return lastLog;
+			}
+		catch (SQLException e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+		
+	// Get specific make a new effort log row
+	public static void createDBStartLogEntry(Log startLog)
+	{
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement psInsert = null;
+
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+			psInsert = connection.prepareStatement("INSERT effort_logs_" + Main.user.getId() + " (project, start_time, end_time, date, lifecycle, category, plan, deliverable, interruption, defect, other) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+			psInsert.setString(1, startLog.getProject());
+			psInsert.setString(2, startLog.getStartTime());
+			psInsert.setString(3, startLog.getEndTime());
+			psInsert.setString(4, startLog.getDate());
+			psInsert.setString(5, startLog.getLifeCycleStep());
+			psInsert.setString(6, startLog.getEffortCategory());
+			psInsert.setString(7, startLog.getPlan());
+			psInsert.setString(8, startLog.getDeliverable());
+			psInsert.setString(9, startLog.getInteruption());
+			psInsert.setString(10, startLog.getDefect());
+			psInsert.setString(11, startLog.getOther());
+			int result = psInsert.executeUpdate();
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Get specific user story by ID
+	public static void updateLogEntryById(Log startLog)
+	{
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement psInsert = null;
+
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+			psInsert = connection.prepareStatement("UPDATE effort_logs_" + Main.user.getId() + " SET project = ?, start_time = ?, end_time = ?, date = ?, lifecycle = ?, category = ?, plan = ?, deliverable = ?, interruption = ?, defect = ?, other = ? WHERE id = ?;");
+
+			psInsert.setString(1, startLog.getProject());
+			psInsert.setString(2, startLog.getStartTime());
+			psInsert.setString(3, startLog.getEndTime());
+			psInsert.setString(4, startLog.getDate());
+			psInsert.setString(5, startLog.getLifeCycleStep());
+			psInsert.setString(6, startLog.getEffortCategory());
+			psInsert.setString(7, startLog.getPlan());
+			psInsert.setString(8, startLog.getDeliverable());
+			psInsert.setString(9, startLog.getInteruption());
+			psInsert.setString(10, startLog.getDefect());
+			psInsert.setString(11, startLog.getOther());
+			psInsert.setString(12, String.valueOf(startLog.getId()));
+			int result = psInsert.executeUpdate();
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Get specific user story by ID
+	public static void deleteLastEffortLog()
+	{
+		//SQL Database Prep
+		Connection connection = null;
+		PreparedStatement psInsert = null;
+		
+		Log last = DBUtils.getLastEffortLog();
+		try {
+			//Connect to SQL Database
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+			psInsert = connection.prepareStatement("DELETE FROM effort_logs_" + Main.user.getId() + " WHERE id = ?;");
+			psInsert.setInt(1, last.getId());
+			int result = psInsert.executeUpdate();
+			
+			psInsert = connection.prepareStatement("ALTER TABLE effort_logs_" + Main.user.getId() + " AUTO_INCREMENT = ?;");
+			psInsert.setInt(1, last.getId() - 1);
+			result = psInsert.executeUpdate();
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Get specific user story by ID
+		public static Log getLastDefectLog()
+		{
+			//SQL Database Prep
+			Connection connection = null;
+			PreparedStatement ps = null;
+			ResultSet results = null;
+
+			try
+			{
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+				ps = connection.prepareStatement("SELECT * FROM defect_logs_" + Main.user.getId() + " ORDER BY id DESC LIMIT 1;");
+				results = ps.executeQuery();
+
+				results.next();
+					
+				int entryid = results.getInt(1);
+				String project = results.getString(2);
+				String name = results.getString(3);
+				String inject = results.getString(4);
+				String remove = results.getString(5);
+				String symptoms = results.getString(6);
+				String category = results.getString(7);
+				String fix = results.getString(8);
+				int openClose = results.getInt(9);
+					
+				Log lastDLog = new Log("effort", project);
+				lastDLog.createDefectLog(entryid, category, name, symptoms, inject, remove, fix, openClose);
+				return lastDLog;
+
+			}
+			catch (SQLException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+		
+		// Get specific user story by ID
+		public static Log getDefectLogById(int inId)
+		{
+			//SQL Database Prep
+			Connection connection = null;
+			PreparedStatement ps = null;
+			ResultSet results = null;
+
+			try
+			{
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+				ps = connection.prepareStatement("SELECT * FROM defect_logs_" + Main.user.getId() + " WHERE id = ?;");
+				ps.setInt(1, inId);
+				results = ps.executeQuery();
+
+				results.next();
+					
+				int entryid = results.getInt(1);
+				String project = results.getString(2);
+				String name = results.getString(3);
+				String inject = results.getString(4);
+				String remove = results.getString(5);
+				String symptoms = results.getString(6);
+				String category = results.getString(7);
+				String fix = results.getString(8);
+				int openClose = results.getInt(9);
+							
+				Log lastDLog = new Log("effort", project);
+				lastDLog.createDefectLog(entryid, category, name, symptoms, inject, remove, fix, openClose);
+				return lastDLog;
+
+			}
+			catch (SQLException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+				
+		// Get specific make a new effort log row
+		public static void createDBDefectEntry(Log DefectLog)
+		{
+			//SQL Database Prep
+			Connection connection = null;
+			PreparedStatement psInsert = null;
+
+			try {
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+				psInsert = connection.prepareStatement("INSERT defect_logs_" + Main.user.getId() 
+						+ " (project, name, inject, remove, symptoms, category, fix, openClose) "
+						+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+
+				psInsert.setString(1, DefectLog.getProject());
+				psInsert.setString(2, DefectLog.getDefectName());
+				psInsert.setString(3, DefectLog.getDefectInjection());
+				psInsert.setString(4, DefectLog.getDefectRemoval());
+				psInsert.setString(5, DefectLog.getDefectSymptom());
+				psInsert.setString(6, DefectLog.getDefectCategory());
+				psInsert.setString(7, DefectLog.getDefectFix());
+				psInsert.setInt(8, DefectLog.getOpenClose());
+				int result = psInsert.executeUpdate();
+			} 
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		// Get specific user story by ID
+		public static void updateDefectLog(Log DefectLog)
+		{
+			//SQL Database Prep
+			Connection connection = null;
+			PreparedStatement psInsert = null;
+
+			try {
+				//Connect to SQL Database
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+				psInsert = connection.prepareStatement("UPDATE defect_logs_" + Main.user.getId() + " SET project = ?, name = ?, inject = ?, remove = ?, symptoms = ?, category = ?, fix = ?, openClose = ? WHERE id = ?;");
+
+				psInsert.setString(1, DefectLog.getProject());
+				psInsert.setString(2, DefectLog.getDefectName());
+				psInsert.setString(3, DefectLog.getDefectInjection());
+				psInsert.setString(4, DefectLog.getDefectRemoval());
+				psInsert.setString(5, DefectLog.getDefectSymptom());
+				psInsert.setString(6, DefectLog.getDefectCategory());
+				psInsert.setString(7, DefectLog.getDefectFix());
+				psInsert.setInt(8, DefectLog.getOpenClose());
+				psInsert.setInt(9, DefectLog.getId());
+				int result = psInsert.executeUpdate();
+			} 
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		// Get specific user story by ID
+				public static void deleteLastDefectLog()
+				{
+					//SQL Database Prep
+					Connection connection = null;
+					PreparedStatement psInsert = null;
+					
+					Log last = DBUtils.getLastDefectLog();
+					try {
+						//Connect to SQL Database
+						connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/effortlogger_db", "root", DB_PASSWORD);
+						psInsert = connection.prepareStatement("DELETE FROM defect_logs_" + Main.user.getId() + " WHERE id = ?;");
+						psInsert.setInt(1, last.getId());
+						int result = psInsert.executeUpdate();
+						
+						psInsert = connection.prepareStatement("ALTER TABLE defect_logs_" + Main.user.getId() + " AUTO_INCREMENT = ?;");
+						psInsert.setInt(1, last.getId() - 1);
+						result = psInsert.executeUpdate();
+					} 
+					catch (SQLException e)
+					{
+						e.printStackTrace();
+					}
+				}
+		
 	
 	// Create or update user story in the DB, based off whether sid is NULL
 	public static boolean createUserStory(int id, String name, String weight, String description, String similar, String sid)

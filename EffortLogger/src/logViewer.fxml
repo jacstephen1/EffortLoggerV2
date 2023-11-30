@@ -41,7 +41,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="projects" layoutX="275.0" layoutY="31.0" prefWidth="350.0" />
+            <ChoiceBox fx:id="project" layoutX="275.0" layoutY="31.0" prefWidth="350.0" onAction="#projectSelected" />
             <Label layoutX="635.0" layoutY="74.0" text="Defect Logs">
                <font>
                   <Font size="20.0" />
@@ -52,8 +52,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="effort" layoutX="52.0" layoutY="110.0" prefWidth="350.0" />
-            <ChoiceBox fx:id="defect" layoutX="512.0" layoutY="110.0" prefWidth="350.0" />
+            <ChoiceBox fx:id="effort" layoutX="52.0" layoutY="110.0" prefWidth="350.0" onAction="#effortSelected" />
+            <ChoiceBox fx:id="defect" layoutX="512.0" layoutY="110.0" prefWidth="350.0" onAction="#defectSelected" />
             <Label layoutX="52.0" layoutY="151.0" text="Date:">
                <font>
                   <Font size="20.0" />
@@ -89,37 +89,37 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextArea editable="false" layoutX="53.0" layoutY="412.0" prefHeight="80.0" prefWidth="348.0" wrapText="true" />
-            <TextField layoutX="106.0" layoutY="154.0" prefHeight="25.0" prefWidth="296.0" />
-            <TextField layoutX="106.0" layoutY="184.0" prefHeight="25.0" prefWidth="296.0" />
-            <TextField layoutX="106.0" layoutY="214.0" prefHeight="25.0" prefWidth="296.0" />
-            <TextField layoutX="106.0" layoutY="245.0" prefHeight="25.0" prefWidth="296.0" />
-            <TextField layoutX="193.0" layoutY="298.0" prefHeight="25.0" prefWidth="209.0" />
-            <TextField layoutX="145.0" layoutY="343.0" prefHeight="25.0" prefWidth="259.0" />
+            <TextArea fx:id="deliverable" editable="false" layoutX="53.0" layoutY="412.0" prefHeight="80.0" prefWidth="348.0" wrapText="true" />
+            <TextField fx:id="date" layoutX="106.0" layoutY="154.0" prefHeight="25.0" prefWidth="296.0" />
+            <TextField fx:id="startTime" layoutX="106.0" layoutY="184.0" prefHeight="25.0" prefWidth="296.0" />
+            <TextField fx:id="endTime" layoutX="106.0" layoutY="214.0" prefHeight="25.0" prefWidth="296.0" />
+            <TextField fx:id="timeElapsed" layoutX="106.0" layoutY="245.0" prefHeight="25.0" prefWidth="296.0" />
+            <TextField fx:id="lifeCycleStep" layoutX="193.0" layoutY="298.0" prefHeight="25.0" prefWidth="209.0" />
+            <TextField fx:id="effortCategory" layoutX="145.0" layoutY="343.0" prefHeight="25.0" prefWidth="259.0" />
             <Label layoutX="512.0" layoutY="151.0" text="Name: ">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="574.0" layoutY="154.0" prefHeight="25.0" prefWidth="288.0" />
+            <TextField fx:id="defectName" layoutX="574.0" layoutY="154.0" prefHeight="25.0" prefWidth="288.0" />
             <Label layoutX="512.0" layoutY="212.0" text="Injected:">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="590.0" layoutY="215.0" prefHeight="25.0" prefWidth="272.0" />
+            <TextField fx:id="injection" layoutX="590.0" layoutY="215.0" prefHeight="25.0" prefWidth="272.0" />
             <Label layoutX="512.0" layoutY="243.0" text="Removed:">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="603.0" layoutY="246.0" prefHeight="25.0" prefWidth="259.0" />
+            <TextField fx:id="removal" layoutX="603.0" layoutY="246.0" prefHeight="25.0" prefWidth="259.0" />
             <Label layoutX="512.0" layoutY="273.0" text="Category:">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="603.0" layoutY="276.0" prefHeight="25.0" prefWidth="259.0" />
+            <TextField fx:id="defectCategory" layoutX="603.0" layoutY="276.0" prefHeight="25.0" prefWidth="259.0" />
             <Label layoutX="512.0" layoutY="182.0" text="Status:">
                <font>
                   <Font size="20.0" />
@@ -130,8 +130,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextArea editable="false" layoutX="513.0" layoutY="340.0" prefHeight="151.0" prefWidth="348.0" wrapText="true" />
-            <TextField layoutX="574.0" layoutY="185.0" prefHeight="25.0" prefWidth="288.0" />
+            <TextArea fx:id="fix" editable="false" layoutX="513.0" layoutY="340.0" prefHeight="151.0" prefWidth="348.0" wrapText="true" />
+            <TextField fx:id="openClose" layoutX="574.0" layoutY="185.0" prefHeight="25.0" prefWidth="288.0" />
          </children>
       </Pane>
    </children>
