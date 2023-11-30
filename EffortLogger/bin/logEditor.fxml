@@ -42,16 +42,16 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="512.0" layoutY="85.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="184.0" onAction="#logDelete" text="Clear Effort Logs">
+            <Button layoutX="512.0" layoutY="85.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="184.0" onAction="#clear" text="Clear Effort Logs">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
             <ComboBox fx:id="effort" layoutX="27.0" layoutY="404.0" prefHeight="25.0" prefWidth="202.0" />
-            <ComboBox fx:id="logEntry" layoutX="27.0" layoutY="172.0" prefHeight="25.0" prefWidth="837.0" />
-            <ComboBox fx:id="project" layoutX="27.0" layoutY="81.0" prefHeight="25.0" prefWidth="339.0" />
-            <ComboBox fx:id="plan" layoutX="284.0" layoutY="404.0" prefHeight="25.0" prefWidth="476.0" />
-            <Text layoutX="512.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.a. Clear current project logs.">
+            <ComboBox fx:id="logEntry" layoutX="27.0" layoutY="172.0" prefHeight="25.0" prefWidth="837.0" onAction="#entrySelected" />
+            <ComboBox fx:id="project" layoutX="27.0" layoutY="81.0" prefHeight="25.0" prefWidth="339.0" onAction="#projectSelected"/>
+            <ComboBox fx:id="deliverable" layoutX="284.0" layoutY="404.0" prefHeight="25.0" prefWidth="476.0" />
+            <Text layoutX="512.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clear/Restart">
                <font>
                   <Font size="20.0" />
                </font>
@@ -73,7 +73,7 @@
             </Text>
             <TextField fx:id="date" layoutX="76.0" layoutY="256.0" />
             <TextField fx:id="startTime" layoutX="344.0" layoutY="257.0" />
-            <TextField fx:id="StopTime" layoutX="622.0" layoutY="257.0" />
+            <TextField fx:id="stopTime" layoutX="622.0" layoutY="257.0" />
             <Text layoutX="522.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stop Time:">
                <font>
                   <Font size="20.0" />
@@ -90,137 +90,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text layoutX="284.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plan:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="24.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3.a. Modify the current effort log attributes, then hit the &quot;Update Current Entry&quot; button to save.">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane prefHeight="140.0" prefWidth="900.0">
-         <children>
-            <Button layoutX="598.0" layoutY="54.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="208.0" onAction="#entryDelete" text="Delete Entry">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button layoutX="284.0" layoutY="54.0" mnemonicParsing="false" onAction="#entrySplit" text="Split Current Entry Into Two">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button layoutX="24.0" layoutY="54.0" mnemonicParsing="false" onAction="#entryUpdate" text="Update Current Entry">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Text layoutX="24.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3.b. Press the corresponding buttons below for other optoins." wrappingWidth="543.2496337890625">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-   </children>
-</VBox>
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-  Author: Jon-Paul Sullivan
--->
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EditorController">
-   <children>
-      <Pane prefHeight="74.0" prefWidth="742.0">
-         <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="58.0" layoutX="138.0" layoutY="8.0" stroke="BLACK" strokeType="INSIDE" width="642.0" />
-            <Text layoutX="315.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Log Editor">
-               <font>
-                  <Font size="40.0" />
-               </font>
-            </Text>
-            <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchToELConsole" text="Back">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Pane prefHeight="471.0" prefWidth="918.0">
-         <children>
-            <Text layoutX="27.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Select a project to edit its logs.">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="23.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.b. Select the effort log to be modified into the current log" wrappingWidth="622.4495849609375">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Button layoutX="512.0" layoutY="85.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="184.0" onAction="#logDelete" text="Clear Effort Logs">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <ComboBox fx:id="effort" layoutX="27.0" layoutY="404.0" prefHeight="25.0" prefWidth="202.0" />
-            <ComboBox fx:id="logEntry" layoutX="27.0" layoutY="172.0" prefHeight="25.0" prefWidth="837.0" />
-            <ComboBox fx:id="project" layoutX="27.0" layoutY="81.0" prefHeight="25.0" prefWidth="339.0" />
-            <ComboBox fx:id="plan" layoutX="284.0" layoutY="404.0" prefHeight="25.0" prefWidth="476.0" />
-            <Text layoutX="512.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2.a. Clear current project logs.">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="82.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date: yyyy-mm-dd                                      Times: hh:mm:ss                                          Times: hh:mm:ss" wrappingWidth="692.85791015625">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
-            <Text layoutX="23.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="237.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <TextField fx:id="date" layoutX="76.0" layoutY="256.0" />
-            <TextField fx:id="startTime" layoutX="344.0" layoutY="257.0" />
-            <TextField fx:id="StopTime" layoutX="622.0" layoutY="257.0" />
-            <Text layoutX="522.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stop Time:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="27.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Life Cycle Step:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <ComboBox fx:id="lifeCycle" layoutX="27.0" layoutY="323.0" prefHeight="25.0" prefWidth="339.0" />
-            <Text layoutX="27.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Category:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text layoutX="284.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plan:">
+            <Text layoutX="284.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deliverable:">
                <font>
                   <Font size="20.0" />
                </font>

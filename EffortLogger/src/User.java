@@ -23,6 +23,9 @@ public class User {
 	private String password = null;
 	private String role = null;
 	
+	public String currentELProject;
+	public int currentELId;
+	
 	//Create User Info
 	public void setInfo(int userId, String name, String pass, String compRole)
 	{

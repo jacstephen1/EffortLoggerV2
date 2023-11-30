@@ -18,10 +18,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
 public class StatusController implements Initializable{
@@ -29,12 +27,12 @@ public class StatusController implements Initializable{
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	private ArrayList<String> teams = new ArrayList<String>();
-	private XYChart.Series<Number, Number> defectSeries;
+	private ArrayList<String> projects = new ArrayList<String>();
+	private ArrayList<Integer> projectsDefectCount = new ArrayList<Integer>();
+	private XYChart.Series<String, Integer> defectSeries;
 	
 	//FXML Variables
-	@FXML private ChoiceBox<String> teamSelector;
-	@FXML private LineChart<Number, Number> graph;
+	@FXML private BarChart<String, Integer> graph;
 	
 	public void switchToMain(ActionEvent event) throws IOException
 	{
@@ -46,46 +44,39 @@ public class StatusController implements Initializable{
 	}
 	
 	//Read teams and info from text file
-	public void read(String fileName) throws IOException
+	public void read(String projectFile, String defectsFile) throws IOException
 	{
+		//INITIALIZE PROJECTS WITH COUNT OF 0
 		BufferedReader bfr = null;
 		try 
 		{
-			bfr = new BufferedReader(new FileReader(fileName + ".txt")); //Opens bfr
+			bfr = new BufferedReader(new FileReader(projectFile + ".txt")); //Opens bfr
 			String str; //empty
 			while ((str = bfr.readLine()) != null) //iterate
 			{
-				teams.add(str.substring(0, str.indexOf('|'))); //Put the team name into teams list
+				projects.add(str); //Put the project name into project list
+				projectsDefectCount.add(0);
 			}
 		} catch (IOException e) {
 		} finally {
 			try { bfr.close(); } catch (Exception ex) { }
 		}
-	}
-	
-	//Read info into charts
-	public void readTeamInfo(String fileName, String teamName)
-	{
-		//Set Series Name
-		defectSeries.setName(teamName);
 		
-		//Iterator through team list in file to find team
-		BufferedReader bfr = null;
+		//FIND DEFECT COUNT
 		try 
 		{
-			bfr = new BufferedReader(new FileReader(fileName + ".txt"));
-			String str;
-			while ((str = bfr.readLine()) != null)
+			bfr = new BufferedReader(new FileReader(defectsFile + ".txt")); //Opens bfr
+			String defectsStr; //empty
+			while ((defectsStr = bfr.readLine()) != null) //iterate
 			{
-				if (str.substring(0, str.indexOf('|')).equals(teamName)) //Found team
+				String search = defectsStr.substring(defectsStr.indexOf('-')+2, defectsStr.indexOf('|')-1);
+				if (projects.contains(search))
 				{
-					String[] data = str.substring(str.indexOf('|')+1).split(" "); //Create a data array of info (+1 to make sure it doesn't include |)
-					for (String s : data) //Iterate through data
+					for (int i = 0; i < projects.size(); i++)
 					{
-						if (s.indexOf("-") != -1 && !s.substring(0, s.indexOf("-")).equals("") && !s.substring(s.indexOf("-")+1).equals(""))
+						if (projects.get(i).equals(search))
 						{
-							//Add data to data series
-							defectSeries.getData().add(new Data<Number, Number>(Integer.parseInt(s.substring(0, s.indexOf("-"))), Integer.parseInt(s.substring(s.indexOf("-")+1))));
+							projectsDefectCount.set(i, projectsDefectCount.get(i) + 1);
 						}
 					}
 				}
@@ -94,27 +85,39 @@ public class StatusController implements Initializable{
 		} finally {
 			try { bfr.close(); } catch (Exception ex) { }
 		}
+	}
+	
+	//Read info into charts
+	public void readInfo()
+	{
+		//Set Series Name
+		//defectSeries.setName("Projects");
 		
+		for(int i = 0; i < projects.size(); i++)
+		{
+			//Add data to data series
+			defectSeries.getData().add(new XYChart.Data<String, Integer>(projects.get(i), projectsDefectCount.get(i)));
+		}
 		//Add data to chart
 		graph.getData().add(defectSeries);
 	}
 	
 	public void setGraphInfo()
 	{
-		defectSeries = new XYChart.Series<Number, Number>(); //New Data Series
+		defectSeries = new XYChart.Series<String, Integer>(); //New Data Series
 		graph.getData().clear(); //Empty Graph
-		readTeamInfo("teamStatus", teamSelector.getSelectionModel().getSelectedItem()); //read team info
+		readInfo(); //read team info
 	}
 	
 	//Set the choice box to the list of projects found in the text file from the read function
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
-			read("teamStatus"); //Read the text file
+			read("projects", "defect_logs"); //Read the text file
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		teamSelector.getItems().addAll(teams); //Add teams to list
+		setGraphInfo();
 	}
 }

@@ -109,6 +109,6 @@ public class EditPPController implements Initializable{
 
 		String sid = PPMainController.editId;
 
-		DBUtils.createProject(Main.user.getId(), name,desc,story,sid);
+		DBUtils.createProject(Main.user.getId(), name,desc,stories,sid);
 	}
 }

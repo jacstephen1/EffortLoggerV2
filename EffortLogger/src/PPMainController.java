@@ -96,8 +96,6 @@ public class PPMainController implements Initializable{
 			projectInfo.setText(selected.description);
 			UserStories.getItems().clear();
 
-			UserStory story = DBUtils.GetUserStoryById(Main.user.getId(), id);
-			UserStories.getItems().add(story);
 			String ids = selected.user_story_id;
 			String[] split = ids.split(" ");
 
@@ -105,7 +103,7 @@ public class PPMainController implements Initializable{
 
 			for (String id : split)
 			{
-				UserStory story = DBUtils.GetUserStoryById(id);
+				UserStory story = DBUtils.GetUserStoryById(Main.user.getId(), id);
 				stories.add(story);
 			}
 
