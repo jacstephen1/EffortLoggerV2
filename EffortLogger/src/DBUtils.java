@@ -410,6 +410,7 @@ public class DBUtils {
 			
 			//Make Unique Defect Logs Table
 			psCreate = connection.prepareStatement("CREATE TABLE defect_logs_" + id + " ("
+					+ "id INT AUTO_INCREMENT"
 					+ "project VARCHAR(255), "
 					+ "name VARCHAR(255), "
 					+ "inject TEXT, "
@@ -418,7 +419,7 @@ public class DBUtils {
 					+ "category TEXT, "
 					+ "fix TEXT, "
 					+ "openClose INT"
-					+ "PRIMARY KEY (name)"
+					+ "PRIMARY KEY (id)"
 					+ ");");
 			psCreate.executeUpdate();
 			
