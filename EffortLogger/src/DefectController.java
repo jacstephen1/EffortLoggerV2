@@ -182,10 +182,36 @@ public class DefectController {
 	{
 		int index = 0;
 		int i = 0;
-		//change the nulls out for strings you get from the table with the right defectName
-		fix.setText(null);
-		defectName.setText(null);
-		cause.setText(null);
+		if(updating == false) {
+			noDefect.setVisible(false);
+			Log lastDefect = DBUtils.getLastDefectLog();
+			for(i = 2; i <= lastDefect.getId(); i++) {
+				Log temp = DBUtils.getDefectLogById(i);
+				if(temp.getDefectName().equals(defects.getValue())) {
+					index = i;
+				}
+			}
+			selectedLog = DBUtils.getDefectLogById(index);
+			fix.setText(selectedLog.getDefectFix());
+			defectName.setText(selectedLog.getDefectName());
+			cause.setText(selectedLog.getDefectSymptom());
+			
+			injection.getSelectionModel().select(selectedLog.getDefectInjection());
+			removal.getSelectionModel().select(selectedLog.getDefectRemoval());
+			category.getSelectionModel().select(selectedLog.getDefectCategory());
+			
+			injection.scrollTo(selectedLog.getDefectInjection());
+			removal.scrollTo(selectedLog.getDefectRemoval());
+			category.scrollTo(selectedLog.getDefectCategory());
+			
+			if(selectedLog.getOpenClose() == 1) {
+				openButton(event);
+			}
+			else
+			{
+				closeButton(event);
+			}
+		}
 		//get the string to equal the injection life cycle step
 		String strInject = null;
 		//change null to table isnt empty
@@ -248,130 +274,130 @@ public class DefectController {
 	}
 	
 	//Save txt files and inputs to a text area
-			public void readToLV(ListView<String> lv, String name) throws IOException
-			{
-				BufferedReader bfr = null;
-				  try 
-				  {
-					  bfr = new BufferedReader(new FileReader(name + ".txt"));
-					  lv.getItems().clear();
-					  String str;
-					  while ((str = bfr.readLine()) != null)
-					  {
-						  lv.getItems().addAll(str);
-					  }
-				  } catch (IOException e) {
-				  } finally {
-				    try { bfr.close(); } catch (Exception ex) { }
-				    }
-			}
+	public void readToLV(ListView<String> lv, String name) throws IOException
+	{
+		BufferedReader bfr = null;
+		  try 
+		  {
+			  bfr = new BufferedReader(new FileReader(name + ".txt"));
+			  lv.getItems().clear();
+			  String str;
+			  while ((str = bfr.readLine()) != null)
+			  {
+				  lv.getItems().addAll(str);
+			  }
+		  } catch (IOException e) {
+		  } finally {
+		    try { bfr.close(); } catch (Exception ex) { }
+		    }
+	}
 	
 	//Save txt files and inputs to a text area
-		public void readToCB(ComboBox<String> cb, String name) throws IOException
-		{
-			BufferedReader bfr = null;
-			  try 
+	public void readToCB(ComboBox<String> cb, String name) throws IOException
+	{
+		BufferedReader bfr = null;
+		  try 
+		  {
+			  bfr = new BufferedReader(new FileReader(name + ".txt"));
+			  cb.getItems().clear();
+			  String str;
+			  while ((str = bfr.readLine()) != null)
 			  {
-				  bfr = new BufferedReader(new FileReader(name + ".txt"));
-				  cb.getItems().clear();
-				  String str;
-				  while ((str = bfr.readLine()) != null)
-				  {
-					  cb.getItems().addAll(str);
-				  }
-			  } catch (IOException e) {
-			  } finally {
-			    try { bfr.close(); } catch (Exception ex) { }
-			    }
-		}
-		
-		public void initialize() {
-			try {
-				readToCB(project, "projects");
-				noDefect.setVisible(false);
-				readToLV(injection,"lifecycle");
-				readToLV(removal,"lifecycle");
-				readToLV(category,"defect");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+				  cb.getItems().addAll(str);
+			  }
+		  } catch (IOException e) {
+		  } finally {
+		    try { bfr.close(); } catch (Exception ex) { }
+		    }
+	}
 	
-		
-		public void doingChecksAndMakeDefect() 
+	public void initialize() {
+		try {
+			readToCB(project, "projects");
+			noDefect.setVisible(false);
+			readToLV(injection,"lifecycle");
+			readToLV(removal,"lifecycle");
+			readToLV(category,"defect");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void doingChecksAndMakeDefect() 
+	{
+		if(defectName.getText() == null || defectName.getText().trim().isEmpty() 
+				|| cause.getText() == null || cause.getText().trim().isEmpty() 
+				|| fix.getText() == null || fix.getText().trim().isEmpty()) 
 		{
-			if(defectName.getText() == null || defectName.getText().trim().isEmpty() 
-					|| cause.getText() == null || cause.getText().trim().isEmpty() 
-					|| fix.getText() == null || fix.getText().trim().isEmpty()) 
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("One or more of the text field were blank. Please enter the neccessary information");
+			alert.show();
+		}
+		else
+		{
+			if (defectName.getText().contains("?") || defectName.getText().contains("'")
+					|| defectName.getText().contains("=") || defectName.getText().contains("%"))
 			{
 				Alert alert = new Alert(Alert.AlertType.ERROR);
-				alert.setContentText("One or more of the text field were blank. Please enter the neccessary information");
+				alert.setContentText("Invalid characters in Defect Name field. You cannot use the following characters: ? ' = %");
+				alert.show();
+			}
+			else if (cause.getText().contains("?") || cause.getText().contains("'") || cause.getText().contains("=") || cause.getText().contains("%"))
+			{
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("Invalid characters in Cause field. You cannot use the following characters: ? ' = %");
+				alert.show();
+			}
+			else if (fix.getText().contains("?") || fix.getText().contains("'") || fix.getText().contains("=") || fix.getText().contains("%"))
+			{
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("Invalid characters in Fix field. You cannot use the following characters: ? ' = %");
 				alert.show();
 			}
 			else
 			{
-				if (defectName.getText().contains("?") || defectName.getText().contains("'")
-						|| defectName.getText().contains("=") || defectName.getText().contains("%"))
+				if(project.getValue() == null || nosel.equals(project.getValue()))
 				{
 					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setContentText("Invalid characters in Defect Name field. You cannot use the following characters: ? ' = %");
+					alert.setContentText("No Project Selected. Please Enter a project for this defect");
 					alert.show();
 				}
-				else if (cause.getText().contains("?") || cause.getText().contains("'") || cause.getText().contains("=") || cause.getText().contains("%"))
+				else 
 				{
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setContentText("Invalid characters in Cause field. You cannot use the following characters: ? ' = %");
-					alert.show();
-				}
-				else if (fix.getText().contains("?") || fix.getText().contains("'") || fix.getText().contains("=") || fix.getText().contains("%"))
-				{
-					Alert alert = new Alert(Alert.AlertType.ERROR);
-					alert.setContentText("Invalid characters in Fix field. You cannot use the following characters: ? ' = %");
-					alert.show();
-				}
-				else
-				{
-					if(project.getValue() == null || nosel.equals(project.getValue()))
+					if(openClose == 0) 
 					{
 						Alert alert = new Alert(Alert.AlertType.ERROR);
-						alert.setContentText("No Project Selected. Please Enter a project for this defect");
+						alert.setContentText("Please Select if the Project is open or closed.");
 						alert.show();
 					}
-					else 
+					else
 					{
-						if(openClose == 0) 
-						{
+						boolean dupe = false;
+						Log lastDefect = DBUtils.getLastDefectLog();
+						for(int i = 2; i <= lastDefect.getId(); i++) {
+							Log temp = DBUtils.getDefectLogById(i);
+							if(temp.getDefectName().equals(defectName.getText())) {
+								dupe = true;
+							}
+						}
+						if(dupe == true) {
 							Alert alert = new Alert(Alert.AlertType.ERROR);
-							alert.setContentText("Please Select if the Project is open or closed.");
+							alert.setContentText("This defect name is already in use. Please choose a new name");
 							alert.show();
 						}
 						else
-						{
-							boolean dupe = false;
-							Log lastDefect = DBUtils.getLastDefectLog();
-							for(int i = 2; i <= lastDefect.getId(); i++) {
-								Log temp = DBUtils.getDefectLogById(i);
-								if(temp.getDefectName().equals(defectName.getText())) {
-									dupe = true;
-								}
+							{
+							selectedLog = new Log("Defect", project.getValue());
+							selectedLog.createDefectLog(DBUtils.getLastDefectLog().getId(), category.getSelectionModel().getSelectedItem(), defectName.getText(), 
+									cause.getText(), injection.getSelectionModel().getSelectedItem(), removal.getSelectionModel().getSelectedItem(), 
+									fix.getText(), openClose);
+							DBUtils.createDBDefectEntry(selectedLog);
 							}
-							if(dupe == true) {
-								Alert alert = new Alert(Alert.AlertType.ERROR);
-								alert.setContentText("This defect name is already in use. Please choose a new name");
-								alert.show();
-							}
-							else
-								{
-								selectedLog = new Log("Defect", project.getValue());
-								selectedLog.createDefectLog(DBUtils.getLastDefectLog().getId(), category.getSelectionModel().getSelectedItem(), defectName.getText(), 
-										cause.getText(), injection.getSelectionModel().getSelectedItem(), removal.getSelectionModel().getSelectedItem(), 
-										fix.getText(), openClose);
-								DBUtils.createDBDefectEntry(selectedLog);
-								}
-							
-						}
+						
 					}
 				}
 			}
 		}
+	}
 }
